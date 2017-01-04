@@ -9,6 +9,7 @@ namespace GameEngine {
 		R.LoadFont<FontID::ARIAL>("fnt/arial.ttf", 40);
 		R.LoadFont<FontID::HYPERSPACE>("fnt/HyperspaceBold.otf", 50);
 		R.LoadTexture<ObjectID::PLAYER>("gfx/player.png");		
+		R.LoadTexture<ObjectID::BULLET>("gfx/bullet.png");
 	}
 	void AddScenes(void) {
 		SM.AddScene<MenuScene>();

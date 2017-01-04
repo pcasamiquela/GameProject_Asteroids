@@ -7,68 +7,32 @@ Player::~Player()
 
 void Player::Update(float deltaTime)
 {
-
-
-	HandleInput();
 	UpdateSpeed(deltaTime);
 	UpdateAngle();
-	if(IM.IsKeyHold<KEY_BUTTON_UP>() && speedCounter <= MAX_SPEED) speedCounter += (0.8f * deltaTime);
-	else {
-		if (speedCounter > 0) speedCounter -= (0.5f*deltaTime);
-	}
-	
-	position.x += speedCounter*(sin(playerSprite.angle*DegToRad)*0.3f);
-
-	position.y -= speedCounter*(cos(playerSprite.angle*DegToRad)*0.3f);
-
-
-	if (IM.IsKeyHold<KEY_BUTTON_LEFT>()) playerSprite.angle -= 0.005f;
-	if (IM.IsKeyHold<KEY_BUTTON_RIGHT>()) playerSprite.angle += 0.005f;
-	if (playerSprite.angle <= 0) playerSprite.angle = 360;
-	else if (playerSprite.angle >= 360) playerSprite.angle = 0;
-	//std::cout << speedCounter*(sin(playerSprite.angle*DegToRad)) << std::endl;
-
-//	playerSprite.angle = 90;
-
 	DoWrap(position);
-
-
-	playerSprite.transform.x = position.x;
-	playerSprite.transform.y = position.y;
+	UpdatePosition();
+	if (canShoot) {
+		if (IM.IsKeyDown<KEY_BUTTON_SPACE>()) {
+			FireWeapon(bulletCounter);
+			bulletCounter++;
+			if (bulletCounter == MAX_BULLETS - 1) bulletCounter = 0;
+		}
+	}
+	for (int i = 0; i < MAX_BULLETS; i++) {
+		bulletPool[i].Update(deltaTime, playerSprite.angle*DEG2RAD);
+		bulletPool[i].firstShoot = false;
+	}
 }
 
-float Player::Sign(float x)
-{
-	if (x > 0.0f) return 1.0f;
-	if (x < 0.0f) return -1.0f;
-	return 0.0f;
-}
-
-
-float Player::ApplyFriction(float speed, float friction)
-{
-	return 0;
-}
-
-void Player::HandleInput()
-{
-	if (IM.IsKeyDown<KEY_BUTTON_ESCAPE>())exit(0);
-	// Keyboard movement
-	Uint8 keyUp = IM.IsKeyDown<KEY_BUTTON_UP>();
-	Uint8 keyDown = IM.IsKeyDown<KEY_BUTTON_DOWN>();
-	Uint8 keyLeft = IM.IsKeyDown<KEY_BUTTON_LEFT>();;
-	Uint8 keyRight = IM.IsKeyDown<KEY_BUTTON_RIGHT>();;
-
-	// Update input flags
-	moveHorizontal = keyRight - keyLeft;
-	moveVertical = keyDown - keyUp;
-}
 
 void Player::UpdateSpeed(float deltaTime) {
+	if (IM.IsKeyHold<KEY_BUTTON_UP>() && speedCounter <= MAX_SPEED) speedCounter += (0.8f * deltaTime);
+	else {
+		if (speedCounter > 0) speedCounter -= (0.2f*deltaTime);
+	}
 }
 
-void Player::DoWrap(Vector2D& position)
-{
+void Player::DoWrap(Vector2D& position){
 	if (position.x > SCREEN_WIDTH)
 	{
 		position.x = 0.0f;
@@ -88,15 +52,52 @@ void Player::DoWrap(Vector2D& position)
 	}
 }
 
+void Player::UpdatePosition(){
+	
+	position.x += speedCounter*(sin(playerSprite.angle*DEG2RAD));
+	position.y -= speedCounter*(cos(playerSprite.angle*DEG2RAD));
+
+
+	playerSprite.transform.x = position.x;
+	playerSprite.transform.y = position.y;
+}
+
+void Player::FireWeapon(int bullet)
+{
+	bulletPool[bullet].firstShoot = true;
+	Vector2D circlePosition; //To know the direction of bullet, we make a circle and pick a point 
+	circlePosition.x = position.x+width/2 + RADIUS*cos((playerSprite.angle-90)*DEG2RAD);
+	circlePosition.y = position.y+height / 2 + RADIUS*sin((playerSprite.angle-90)*DEG2RAD);
+
+	Vector2D bulletDirection = circlePosition - position;
+	bulletDirection.Normalize();
+	Vector2D spawnPosition = position;
+	spawnPosition.x += 34 * bulletDirection.x ;
+	spawnPosition.y += 34 * bulletDirection.y;
+	bulletPool[bullet].setPosition(circlePosition);
+	bulletPool[bullet].SetActive(true);
+	bulletPool[bulletCounter].lifeTime = 0;
+	bulletDirection = circlePosition - spawnPosition;
+	bulletPool[bullet].Shoot(bulletDirection);
+}
+
 
 void Player::UpdateAngle()
 {
 
+	if (IM.IsKeyHold<KEY_BUTTON_LEFT>()) playerSprite.angle -= 0.002f;
+	if (IM.IsKeyHold<KEY_BUTTON_RIGHT>()) playerSprite.angle += 0.002f;
+
+	if (playerSprite.angle <= 0) playerSprite.angle = 360;
+	else if (playerSprite.angle >= 360) playerSprite.angle = 0;
 }
 
 
 void Player::Draw()
 {
 	playerSprite.Draw();
+	for (int i = 0; i < MAX_BULLETS; i++) {
+		bulletPool[i].Draw();
+	}
 }
 

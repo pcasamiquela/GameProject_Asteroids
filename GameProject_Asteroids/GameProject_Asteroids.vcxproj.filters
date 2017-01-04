@@ -16,6 +16,9 @@
     <Filter Include="Model\Scenes">
       <UniqueIdentifier>{f7be73a7-59d5-43b8-9434-6a68669bc0ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Model\Player">
+      <UniqueIdentifier>{5bf176d7-44fc-41b2-b683-49c9c21edb71}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -29,7 +32,10 @@
       <Filter>Model\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Model</Filter>
+      <Filter>Model\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullets.cpp">
+      <Filter>Model\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -93,11 +99,14 @@
     <ClInclude Include="MenuScene.h">
       <Filter>Model\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Model</Filter>
-    </ClInclude>
     <ClInclude Include="Vector2D.h">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Model\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullets.h">
+      <Filter>Model\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

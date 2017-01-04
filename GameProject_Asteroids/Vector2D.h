@@ -31,4 +31,14 @@ struct Vector2D {
 	{
 		return Vector2D(x * scalar, y * scalar);
 	}
+	inline Vector2D Normalize()
+	{
+		float legth = sqrt((*this).x * (*this).x + (*this).y *(*this).y);
+		if (legth > 0.0f)
+		{
+ 			(*this).x = (*this).x/ legth;
+			(*this).y = (*this).y/ legth;
+		}
+		return (*this);
+	}
 };

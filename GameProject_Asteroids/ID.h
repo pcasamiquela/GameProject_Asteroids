@@ -4,6 +4,7 @@
 // Enum ID used to identify each Game Object in the Game
 enum class ObjectID : const int {
 	BUTTON, 
+	BULLET,
 	PLAYER, //ENTITIES 
 };
 inline std::ostream &operator<<(std::ostream &os, const ObjectID &id) { return os << int(id); };
