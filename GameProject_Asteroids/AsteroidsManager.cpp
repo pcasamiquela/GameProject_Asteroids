@@ -48,8 +48,48 @@ void AsteroidsManager::CollisionController(Asteroid& currentAsteroid)
 			if (distance <= ASTEROID_RADIUS) {
 				//Bullet Impact
 				currentBullet->Reset();
+				player->points += 20;
+				DivideAsteroid(currentAsteroid);
 			}
 		}
+	}
+}
+
+void AsteroidsManager::DivideAsteroid(Asteroid & currentAsteroid)
+{
+	if (currentAsteroid.asteroidState == "BIG") {
+		currentAsteroid.ChangeSprite(ObjectID::MEDIUM_ASTEROID1, 39, 39);
+		currentAsteroid.asteroidState = "MEDIUM";
+		numAsteroids++;
+
+		currentAsteroid.speed *= 2;
+		Asteroid* temp = new Asteroid[numAsteroids];
+		for (int i = 0; i < numAsteroids - 1; i++) {
+			temp[i] = asteroidsPool[i];
+		}
+		temp[numAsteroids-1] = currentAsteroid;
+		temp[numAsteroids - 1].InversDirection();
+		asteroidsPool = temp;
+		//delete[] temp;
+	}
+	else if (currentAsteroid.asteroidState == "MEDIUM") {
+		currentAsteroid.ChangeSprite(ObjectID::SMALL_ASTEROID1, 20, 20);
+		currentAsteroid.asteroidState = "SMALL";
+		currentAsteroid.speed *= 2;
+
+		numAsteroids++;
+		Asteroid* temp = new Asteroid[numAsteroids];
+		for (int i = 0; i < numAsteroids - 1; i++) {
+			temp[i] = asteroidsPool[i];
+		}
+		temp[numAsteroids - 1] = currentAsteroid;
+		temp[numAsteroids - 1].InversDirection();
+		asteroidsPool = temp;
+		//delete[] temp;
+
+	}
+	else if (currentAsteroid.asteroidState == "SMALL") {
+		currentAsteroid.Setup();
 	}
 }
 
@@ -70,7 +110,7 @@ void AsteroidsManager::Draw()
 		//Render Asteroids Sphere Collsion
 
 		//for (int j = 0; j < 360; j++) {
-		//	points[j] = { { int(asteroidsPool[i].GetPosition().x + ASTEROID_RADIUS*cos(j*DEG2RAD)),int(asteroidsPool[i].GetPosition().y + ASTEROID_RADIUS*sin(j*DEG2RAD)), 8,8 }, 0, ObjectID::BULLET };
+		//	points[j] = { { int(asteroidsPool[i].GetPosition().x + asteroidsPool[i].width/2*cos(j*DEG2RAD)),int(asteroidsPool[i].GetPosition().y + asteroidsPool[i].width/2*sin(j*DEG2RAD)), 8,8 }, 0, ObjectID::BULLET };
 		//	points[j].Draw();
 		//}
 

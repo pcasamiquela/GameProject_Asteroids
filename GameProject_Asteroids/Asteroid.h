@@ -4,8 +4,6 @@
 #include <math.h>
 #include "Constants.h"
 
-#define SPEED 0.0005f;
-
 class Asteroid
 {
 public:
@@ -15,14 +13,17 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 	void Setup();
+	void ChangeSprite(ObjectID objectID, int newWidth, int newHight);
 	Vector2D GetPosition();
+	std::string asteroidState;
+	int width, height;
+	float speed;
+	void InversDirection();
 
 private:
-	int width, height;
 	Vector2D position;
 	Vector2D randomDirection;
 	Sprite asteroidSprite;
-
 	void DoWrap(Vector2D &position);
 	void UpdatePosition(float deltaTime);
 };

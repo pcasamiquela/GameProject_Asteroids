@@ -15,21 +15,31 @@ void Asteroid::Setup() {
 	randomDirection.Normalize();
 	width = 92;
 	height = 92;
+	speed = 0.001f;
+	asteroidState = "BIG";
 	int randomSprite = rand() % (3) + 1;
 	switch (randomSprite)
 	{
 	case 1:
-		asteroidSprite = { { int(position.x),int(position.y),width,height }, 0, ObjectID::ASTEROID1 };
+		asteroidSprite = { { int(position.x),int(position.y),width,height }, 0, ObjectID::BIG_ASTEROID1 };
 		break;
 	case 2:
-		asteroidSprite = { { int(position.x),int(position.y),width,height }, 0, ObjectID::ASTEROID2 };
+		asteroidSprite = { { int(position.x),int(position.y),width,height }, 0, ObjectID::BIG_ASTEROID2 };
 		break;
 	case 3:
-		asteroidSprite = { { int(position.x),int(position.y),width,height }, 0, ObjectID::ASTEROID3 };
+		asteroidSprite = { { int(position.x),int(position.y),width,height }, 0, ObjectID::BIG_ASTEROID3 };
 	default:
 		break;
 	}
 }
+
+void Asteroid::ChangeSprite(ObjectID objectID, int newWidth, int newHight)
+{
+	width = newWidth;
+	height = newHight;
+	asteroidSprite = { { int(position.x),int(position.y),width,height }, 0, ObjectID::BIG_ASTEROID2 };
+}
+
 
 Vector2D Asteroid::GetPosition()
 {
@@ -38,6 +48,14 @@ Vector2D Asteroid::GetPosition()
 	centredPosition.y = position.y + height / 2;
 	return centredPosition;
 }
+
+void Asteroid::InversDirection()
+{
+	randomDirection.x *= -1;
+	randomDirection.y *= -1;
+}
+
+
 
 Asteroid::~Asteroid()
 {
@@ -57,8 +75,8 @@ void Asteroid::Draw()
 void Asteroid::UpdatePosition(float deltaTime)
 {
 
-	position.x += randomDirection.x*SPEED;
-	position.y += randomDirection.y*SPEED;
+	position.x += randomDirection.x*speed;
+	position.y += randomDirection.y*speed;
 
 	asteroidSprite.transform.x = position.x;
 	asteroidSprite.transform.y = position.y;

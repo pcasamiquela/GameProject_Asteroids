@@ -33,22 +33,22 @@ void Player::UpdateSpeed(float deltaTime) {
 }
 
 void Player::DoWrap(Vector2D& position){
-	if (position.x > SCREEN_WIDTH)
+	if (position.x > SCREEN_WIDTH + 25)
 	{
-		position.x = 0.0f;
+		position.x = -25.0f;
 	}
-	else if (position.x < 0)
+	else if (position.x < -25)
 	{
-		position.x = SCREEN_WIDTH;
+		position.x = SCREEN_WIDTH + 25;
 	}
 
-	if (position.y > SCREEN_HEIGHT)
+	if (position.y > SCREEN_HEIGHT + 25)
 	{
-		position.y = 0.0f;
+		position.y = -25.0f;
 	}
-	else if (position.y < 0)
+	else if (position.y < -25)
 	{
-		position.y = SCREEN_HEIGHT;
+		position.y = SCREEN_HEIGHT + 25;
 	}
 }
 

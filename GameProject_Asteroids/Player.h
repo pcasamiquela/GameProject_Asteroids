@@ -25,6 +25,7 @@ public:
 	Bullets& GetCurrentBullet(int i);
 	Vector2D GetPosition();
 	int lifes;
+	int points;
 
 private:
 	int width, height;

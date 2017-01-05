@@ -10,9 +10,11 @@ namespace GameEngine {
 		R.LoadFont<FontID::HYPERSPACE>("fnt/HyperspaceBold.otf", 50);
 		R.LoadTexture<ObjectID::PLAYER>("gfx/player.png");		
 		R.LoadTexture<ObjectID::BULLET>("gfx/bullet.png");
-		R.LoadTexture<ObjectID::ASTEROID1>("gfx/asteroid1.png");
-		R.LoadTexture<ObjectID::ASTEROID2>("gfx/asteroid2.png");
-		R.LoadTexture<ObjectID::ASTEROID3>("gfx/asteroid3.png");
+		R.LoadTexture<ObjectID::BIG_ASTEROID1>("gfx/bigAsteroid1.png");
+		R.LoadTexture<ObjectID::BIG_ASTEROID2>("gfx/bigAsteroid2.png");
+		R.LoadTexture<ObjectID::BIG_ASTEROID3>("gfx/bigAsteroid3.png");
+		R.LoadTexture<ObjectID::MEDIUM_ASTEROID1>("gfx/mediumAsteroid1.png");
+		R.LoadTexture<ObjectID::SMALL_ASTEROID1>("gfx/smallAsteroid1.png");
 	}
 	void AddScenes(void) {
 		SM.AddScene<MenuScene>();

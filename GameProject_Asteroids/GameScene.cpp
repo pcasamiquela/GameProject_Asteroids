@@ -21,7 +21,7 @@ void GameScene::OnExit(void) {
 }
 
 void GameScene::Update(void) {
-	if (player->lifes < 0) SM.SetCurScene<MenuScene>();
+	if (player->lifes <= 0) SM.SetCurScene<MenuScene>();
 	static MouseCoords mouseCoords(0, 0);
 	if (IM.IsKeyDown<KEY_BUTTON_ESCAPE>())exit(0);
 	float caca = 0;
@@ -33,6 +33,17 @@ void GameScene::Update(void) {
 }
 
 void GameScene::Draw(void) {
+
+	
+	GUI::DrawTextBlended<FontID::HYPERSPACE>(std::to_string(player->points),
+	{ 100, 40, 1, 1 },
+	{ 255, 255, 255 });
+
+	for (int i = 0; i < player->lifes; i++) {
+		lifeCounter = { {20 + i*50, 100, 30, 39 }, 0, ObjectID::PLAYER };
+		lifeCounter.Draw();
+	}
+
 	asteroidsManager->Draw();
 	player->Draw();
 }

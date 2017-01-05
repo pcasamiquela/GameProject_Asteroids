@@ -21,4 +21,5 @@ private:
 	int m_score{ 0 };
 	Player* player;
 	AsteroidsManager* asteroidsManager;
+	Sprite lifeCounter;
 };
