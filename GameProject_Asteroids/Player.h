@@ -22,8 +22,8 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 	void Reset();
+	Bullets& GetCurrentBullet(int i);
 	Vector2D GetPosition();
-	Bullets& GetBulletPool();
 	int lifes;
 
 private:

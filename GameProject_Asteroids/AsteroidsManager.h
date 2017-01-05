@@ -16,6 +16,6 @@ private:
 	Asteroid* asteroidsPool;
 	Player* player;
 	int numAsteroids;
-	void  CollisionController();
+	void  CollisionController(Asteroid& currentAsteroid);
 };
 

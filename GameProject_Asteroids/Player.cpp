@@ -102,16 +102,16 @@ void Player::Reset()
 	speedCounter = 0;
 }
 
+Bullets& Player::GetCurrentBullet(int i)
+{
+	return bulletPool[i];
+}
+
 Vector2D Player::GetPosition()
 {
 	Vector2D centredPosition;
 	centredPosition.x = position.x + width / 2;
 	centredPosition.y = position.y + height / 2;
 	return centredPosition;
-}
-
-Bullets& Player::GetBulletPool()
-{
-	return *bulletPool;
 }
 

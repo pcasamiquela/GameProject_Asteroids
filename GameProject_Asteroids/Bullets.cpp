@@ -63,3 +63,16 @@ void Bullets::setPosition(Vector2D _position)
 {
 	position = _position;
 }
+
+void Bullets::Reset()
+{
+	position = 0;
+	isActive = false;
+	speedCounter = 0;
+	lifeTime = 0;
+}
+
+Vector2D Bullets::GetPosition()
+{
+	return position;
+}

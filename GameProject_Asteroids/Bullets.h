@@ -27,15 +27,19 @@ public:
 	void Draw();
 	void SetActive(bool _isActive);
 	void setPosition(Vector2D _position);
+	void Reset();
+
+	Vector2D GetPosition();
 	float lifeTime;
 	bool firstShoot;
+	bool isActive;
+
 
 private:
 	Vector2D direction;
 	Vector2D position;
 	Vector2D velocityDirection;
 	Sprite bulletSprite;
-	bool isActive;
 	float speedCounter;
 
 	//reference to collisions!

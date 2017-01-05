@@ -3,7 +3,7 @@
 
 
 
-AsteroidsManager::AsteroidsManager(int _numAsteroids, Player &_player)
+AsteroidsManager::AsteroidsManager(int _numAsteroids, Player& _player)
 {
 	numAsteroids = _numAsteroids;
 	player = &_player;
@@ -17,29 +17,42 @@ AsteroidsManager::~AsteroidsManager()
 
 void AsteroidsManager::Update()
 {
-	//for (int i = 0; i < numAsteroids; i++) asteroidsPool[i].Update(TM.GetDeltaTime() / 100000);
-	CollisionController();
+	for (int i = 0; i < numAsteroids; i++) {
+		asteroidsPool[i].Update(TM.GetDeltaTime() / 100000);
+		CollisionController(asteroidsPool[i]);
+	}
 }
 
-void AsteroidsManager::CollisionController()
+void AsteroidsManager::CollisionController(Asteroid& currentAsteroid)
 {
-	//Player COllisions
-	Vector2D distancePlayerAsteroid;
-	for (int i = 0; i < numAsteroids; i++) {
-		distancePlayerAsteroid.x = (player->GetPosition().x) - (asteroidsPool[i].GetPosition().x);
-		distancePlayerAsteroid.y = (player->GetPosition().y)  - (asteroidsPool[i].GetPosition().y);
+	Bullets* currentBullet;
+	Vector2D distanceFromAsteroid;
+	float distance;
+	//Player Collisions
+	distanceFromAsteroid.x = player->GetPosition().x - currentAsteroid.GetPosition().x;
+	distanceFromAsteroid.y = player->GetPosition().y  - currentAsteroid.GetPosition().y;
 
-		float distance = distancePlayerAsteroid.Length();
-		
-		if (distance <= PLAYER_RADIUS+ASTEROID_RADIUS) {
-			player->lifes--;
-			player->Reset();
-		}
+	distance = distanceFromAsteroid.Length();
+	if (distance <= PLAYER_RADIUS+ASTEROID_RADIUS) {
+		player->lifes--;
+		player->Reset();
 	}
 
 	//BulletCollisions
-	//for(int i = 0; i < )
+	for (int j = 0; j < MAX_BULLETS; j++) {
+		currentBullet = &player->GetCurrentBullet(j);
+		if (currentBullet->isActive) {
+			distanceFromAsteroid.x = currentBullet->GetPosition().x - currentAsteroid.GetPosition().x;
+			distanceFromAsteroid.y = currentBullet->GetPosition().y - currentAsteroid.GetPosition().y;
+			distance = distanceFromAsteroid.Length();
+			if (distance <= ASTEROID_RADIUS) {
+				//Bullet Impact
+				currentBullet->Reset();
+			}
+		}
+	}
 }
+
 
 void AsteroidsManager::Draw()
 {
