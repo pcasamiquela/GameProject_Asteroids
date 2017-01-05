@@ -95,8 +95,23 @@ void Player::Draw()
 	}
 }
 
+void Player::Reset()
+{
+	position.x = SCREEN_WIDTH / 2;
+	position.y = SCREEN_HEIGHT / 2;
+	speedCounter = 0;
+}
+
 Vector2D Player::GetPosition()
 {
-	return position;
+	Vector2D centredPosition;
+	centredPosition.x = position.x + width / 2;
+	centredPosition.y = position.y + height / 2;
+	return centredPosition;
+}
+
+Bullets& Player::GetBulletPool()
+{
+	return *bulletPool;
 }
 

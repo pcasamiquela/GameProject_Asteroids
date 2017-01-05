@@ -21,7 +21,7 @@ void GameScene::OnExit(void) {
 }
 
 void GameScene::Update(void) {
-
+	if (player->lifes < 0) SM.SetCurScene<MenuScene>();
 	static MouseCoords mouseCoords(0, 0);
 	if (IM.IsKeyDown<KEY_BUTTON_ESCAPE>())exit(0);
 	float caca = 0;

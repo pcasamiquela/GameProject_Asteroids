@@ -33,7 +33,7 @@ struct Vector2D {
 	}
 	inline Vector2D Normalize()
 	{
-		float legth = sqrt((*this).x * (*this).x + (*this).y *(*this).y);
+		float legth = Length();
 		if (legth > 0.0f)
 		{
  			(*this).x = (*this).x/ legth;
@@ -41,4 +41,9 @@ struct Vector2D {
 		}
 		return (*this);
 	}
+	inline float Length() const
+	{
+		return sqrt(x * x + y * y);
+	}
+
 };

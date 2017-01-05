@@ -13,21 +13,30 @@ void Asteroid::Setup() {
 	position = Vector2D(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT); //Random position inside screen
 	randomDirection = Vector2D(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT) - position; //Random Vector
 	randomDirection.Normalize();
-
+	width = 92;
+	height = 92;
 	int randomSprite = rand() % (3) + 1;
 	switch (randomSprite)
 	{
 	case 1:
-		asteroidSprite = { { int(position.x),int(position.y),92,92 }, 0, ObjectID::ASTEROID1 };
+		asteroidSprite = { { int(position.x),int(position.y),width,height }, 0, ObjectID::ASTEROID1 };
 		break;
 	case 2:
-		asteroidSprite = { { int(position.x),int(position.y),92,92 }, 0, ObjectID::ASTEROID2 };
+		asteroidSprite = { { int(position.x),int(position.y),width,height }, 0, ObjectID::ASTEROID2 };
 		break;
 	case 3:
-		asteroidSprite = { { int(position.x),int(position.y),92,92 }, 0, ObjectID::ASTEROID3 };
+		asteroidSprite = { { int(position.x),int(position.y),width,height }, 0, ObjectID::ASTEROID3 };
 	default:
 		break;
 	}
+}
+
+Vector2D Asteroid::GetPosition()
+{
+	Vector2D centredPosition;
+	centredPosition.x = position.x + width / 2;
+	centredPosition.y = position.y + height / 2;
+	return centredPosition;
 }
 
 Asteroid::~Asteroid()

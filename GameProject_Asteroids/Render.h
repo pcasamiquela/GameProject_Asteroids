@@ -101,6 +101,7 @@ public:
 		SDL_RendererFlip flip = SDL_FLIP_NONE;
 		SDL_RenderCopyEx(m_SDLRenderer, m_textureData[objectID], nullptr, &transform(), angle, center, flip);
 	}
+	
 	void Clear(void) const { SDL_RenderClear(m_SDLRenderer); };
 	void Render(void) const { SDL_RenderPresent(m_SDLRenderer); };
 private:

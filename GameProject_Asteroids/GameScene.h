@@ -5,6 +5,7 @@
 #include "Constants.h"
 #include "Player.h"
 #include "AsteroidsManager.h"
+#include "MenuScene.h"
 #define MAX_ASTEROIDS 5
 
 // GameScene class with the main gameplay mode

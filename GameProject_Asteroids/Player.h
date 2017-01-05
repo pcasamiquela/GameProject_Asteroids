@@ -6,7 +6,6 @@
 #include "Bullets.h"
 #define MAX_SPEED 0.005f
 #define RADIUS 25.0f
-#define MAX_BULLETS 10
 class Player
 {
 
@@ -17,11 +16,15 @@ public:
 		bulletPool = new Bullets[MAX_BULLETS];
 		bulletCounter = 0;
 		canShoot = true;
+		lifes = 3;
 	};
 	~Player();
 	void Update(float deltaTime);
 	void Draw();
+	void Reset();
 	Vector2D GetPosition();
+	Bullets& GetBulletPool();
+	int lifes;
 
 private:
 	int width, height;

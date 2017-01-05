@@ -1,6 +1,8 @@
 #pragma once
 #include "Asteroid.h"
 #include "Player.h"
+#define ASTEROID_RADIUS 50
+#define PLAYER_RADIUS 15
 
 class AsteroidsManager
 {

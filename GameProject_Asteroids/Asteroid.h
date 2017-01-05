@@ -15,7 +15,10 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 	void Setup();
+	Vector2D GetPosition();
+
 private:
+	int width, height;
 	Vector2D position;
 	Vector2D randomDirection;
 	Sprite asteroidSprite;
