@@ -1,7 +1,7 @@
 #pragma once
 #include "System.h"
 #include "Sprite.h"
-#define MAX_SPEED 0.005f
+#define MAX_SPEED 0.0075f
 class Bullets
 {
 public:
@@ -25,7 +25,6 @@ public:
 	~Bullets();
 	void Update(float deltaTIme, float angle);
 	void Draw();
-	void Shoot(Vector2D direction);
 	void SetActive(bool _isActive);
 	void setPosition(Vector2D _position);
 	float lifeTime;
@@ -42,7 +41,7 @@ private:
 	//reference to collisions!
 
 	void UpdatePosition(float angle);
-	void CheckSollisions();
+	void CheckCollisions();
 	void DoWrap(Vector2D& position);
 };
 

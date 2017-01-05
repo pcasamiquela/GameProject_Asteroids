@@ -36,11 +36,11 @@ void MenuScene::Update(void) {
 		if (exitButton.ClickButton(mouseCoords.x, mouseCoords.y)) exit(0);
 		break;
 
-	case DIFFICULTY_MENU:
-		if (easyButton.ClickButton(mouseCoords.x, mouseCoords.y)) SM.SetCurScene<GameScene>();
-		if (mediumButton.ClickButton(mouseCoords.x, mouseCoords.y)) SM.SetCurScene<GameScene>();
-		if (hardButton.ClickButton(mouseCoords.x, mouseCoords.y)) SM.SetCurScene<GameScene>();
-		break;
+	//case DIFFICULTY_MENU:
+	//	if (easyButton.ClickButton(mouseCoords.x, mouseCoords.y)) SM.SetCurScene<GameScene>();
+	//	if (mediumButton.ClickButton(mouseCoords.x, mouseCoords.y)) SM.SetCurScene<GameScene>();
+	//	if (hardButton.ClickButton(mouseCoords.x, mouseCoords.y)) SM.SetCurScene<GameScene>();
+	//	break;
 	}
 	mouseCoords = { 0, 0 };
 }

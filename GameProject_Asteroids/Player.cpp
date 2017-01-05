@@ -71,20 +71,14 @@ void Player::FireWeapon(int bullet)
 
 	Vector2D bulletDirection = circlePosition - position;
 	bulletDirection.Normalize();
-	Vector2D spawnPosition = position;
-	spawnPosition.x += 34 * bulletDirection.x ;
-	spawnPosition.y += 34 * bulletDirection.y;
 	bulletPool[bullet].setPosition(circlePosition);
 	bulletPool[bullet].SetActive(true);
 	bulletPool[bulletCounter].lifeTime = 0;
-	bulletDirection = circlePosition - spawnPosition;
-	bulletPool[bullet].Shoot(bulletDirection);
 }
 
 
 void Player::UpdateAngle()
 {
-
 	if (IM.IsKeyHold<KEY_BUTTON_LEFT>()) playerSprite.angle -= 0.002f;
 	if (IM.IsKeyHold<KEY_BUTTON_RIGHT>()) playerSprite.angle += 0.002f;
 
@@ -99,5 +93,10 @@ void Player::Draw()
 	for (int i = 0; i < MAX_BULLETS; i++) {
 		bulletPool[i].Draw();
 	}
+}
+
+Vector2D Player::GetPosition()
+{
+	return position;
 }
 

@@ -9,16 +9,11 @@ void Bullets::Update(float deltaTime, float angle)
 	if (isActive) {
 		UpdatePosition(angle);
 		DoWrap(position);
+		lifeTime += deltaTime;	
+		if (lifeTime >= 0.0075f) SetActive(false);
 	}
-	lifeTime += deltaTime;
-	if (lifeTime >= 0.01f) SetActive(false);
 }
 
-
-void Bullets::Shoot(Vector2D _direction)
-{
-	direction =_direction.Normalize();
-}
 
 void Bullets::UpdatePosition(float angle)
 {
@@ -32,6 +27,7 @@ void Bullets::UpdatePosition(float angle)
 
 	bulletSprite.transform.x = position.x;
 	bulletSprite.transform.y = position.y;
+
 }
 
 void Bullets::DoWrap(Vector2D& position) {

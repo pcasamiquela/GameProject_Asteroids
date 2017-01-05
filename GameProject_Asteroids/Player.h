@@ -21,6 +21,7 @@ public:
 	~Player();
 	void Update(float deltaTime);
 	void Draw();
+	Vector2D GetPosition();
 
 private:
 	int width, height;

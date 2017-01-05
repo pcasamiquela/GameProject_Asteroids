@@ -13,18 +13,21 @@
     <Filter Include="Utils">
       <UniqueIdentifier>{0952e3b5-41d6-48af-b372-9180d19584bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Model\Entities">
+      <UniqueIdentifier>{dc572e28-8473-48ea-9bd5-1cea5c9c9cef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Entities\Player">
+      <UniqueIdentifier>{5bf176d7-44fc-41b2-b683-49c9c21edb71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Entities\Asteroids">
+      <UniqueIdentifier>{b4bb2423-111b-4b3f-afa7-3015e94e814b}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Model\Scenes">
       <UniqueIdentifier>{f7be73a7-59d5-43b8-9434-6a68669bc0ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Model\Player">
-      <UniqueIdentifier>{5bf176d7-44fc-41b2-b683-49c9c21edb71}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Button.cpp">
-      <Filter>Model</Filter>
-    </ClCompile>
     <ClCompile Include="GameScene.cpp">
       <Filter>Model\Scenes</Filter>
     </ClCompile>
@@ -32,10 +35,19 @@
       <Filter>Model\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Model\Player</Filter>
+      <Filter>Model\Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="Bullets.cpp">
-      <Filter>Model\Player</Filter>
+      <Filter>Model\Entities\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Asteroid.cpp">
+      <Filter>Model\Entities\Asteroids</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="AsteroidsManager.cpp">
+      <Filter>Model\Entities\Asteroids</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -78,9 +90,6 @@
     <ClInclude Include="Sprite.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Model</Filter>
-    </ClInclude>
     <ClInclude Include="GUI.h">
       <Filter>Model</Filter>
     </ClInclude>
@@ -103,10 +112,19 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Model\Player</Filter>
+      <Filter>Model\Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="Bullets.h">
-      <Filter>Model\Player</Filter>
+      <Filter>Model\Entities\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Asteroid.h">
+      <Filter>Model\Entities\Asteroids</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="AsteroidsManager.h">
+      <Filter>Model\Entities\Asteroids</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
