@@ -27,15 +27,25 @@ public:
 	int lifes;
 	int points;
 
+	enum ControlState {
+		KEYBOARD,
+		MOUSE
+	};
+	ControlState controlState;
+
 private:
 	int width, height;
 	Vector2D position;
+	Vector2D desiredVelocity;
+	Vector2D previousVelocity;
 	float speedCounter;
+	float angle;
 	bool canShoot;
 
 	Sprite playerSprite;
 	Bullets* bulletPool;
 
+	MouseCoords mouseCoords;
 
 	void UpdateSpeed(float deltaTime);
 	void UpdateAngle();
@@ -43,5 +53,6 @@ private:
 	void UpdatePosition();
 	void FireWeapon(int bullet);
 	int bulletCounter;
+
 };
 

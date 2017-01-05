@@ -2,23 +2,19 @@
 #include "Scene.h"
 #include "Button.h"
 #include "Constants.h"
-#include "Sprite.h"
-#include "GameScene.h"
+#include "Player.h"
+#include "MenuScene.h"
 
-class MenuScene : public Scene{
+class RankingScene : public Scene{
 public:
-	explicit MenuScene();
-	~MenuScene() override;
+	RankingScene();
+	~RankingScene();
 	void OnEntry(void) override;
 	void OnExit(void) override;
 	void Update(void) override;
 	void Draw(void) override;
 private:
-	Button playButton;
-	Button rankingButton;
-	Button exitButton;
-
-
-	int m_score{ 0 };
+	std::string name;
+	void RequestName();
 };
 

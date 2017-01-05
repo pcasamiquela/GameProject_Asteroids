@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "AsteroidsManager.h"
 #include "MenuScene.h"
+#include "RankingScene.h"
 #define MAX_ASTEROIDS 5
 
 // GameScene class with the main gameplay mode
@@ -18,8 +19,25 @@ public:
 	void Update(void) override;
 	void Draw(void) override;
 private:
+	Button easyButton;
+	Button mediumButton;
+	Button hardButton;
+	Button backButton;
+	Button mouseControl;
+	Button keyboardControl;
+	Button continueButton;
+	Button exitButton;
+
+	bool inGameMenu;
+
 	int m_score{ 0 };
 	Player* player;
 	AsteroidsManager* asteroidsManager;
 	Sprite lifeCounter;
+	enum State {
+		PLAY,
+		DIFFICULTY_MENU,
+		CONTROL_MENU,
+	};
+	State currentState;
 };

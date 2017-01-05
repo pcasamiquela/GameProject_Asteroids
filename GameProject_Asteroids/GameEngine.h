@@ -2,6 +2,7 @@
 #include "Constants.h"
 #include "MenuScene.h"
 #include "GameScene.h"
+#include "RankingScene.h"
 
 namespace GameEngine {
 	
@@ -19,7 +20,8 @@ namespace GameEngine {
 	void AddScenes(void) {
 		SM.AddScene<MenuScene>();
 		SM.AddScene<GameScene>();
-		SM.SetCurScene<GameScene>();
+		SM.AddScene<RankingScene>();
+		SM.SetCurScene<MenuScene>();
 	}
 	
 	template<int screenWidth, int screenHeight>

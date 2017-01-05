@@ -10,7 +10,7 @@ void Bullets::Update(float deltaTime, float angle)
 		UpdatePosition(angle);
 		DoWrap(position);
 		lifeTime += deltaTime;	
-		if (lifeTime >= 0.0075f) SetActive(false);
+		if (lifeTime >= 0.02f) SetActive(false);
 	}
 }
 

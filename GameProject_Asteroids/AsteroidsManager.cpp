@@ -13,6 +13,7 @@ AsteroidsManager::AsteroidsManager(int _numAsteroids, Player& _player)
 
 AsteroidsManager::~AsteroidsManager()
 {
+	//delete[] asteroidsPool;
 }
 
 void AsteroidsManager::Update()
@@ -48,7 +49,6 @@ void AsteroidsManager::CollisionController(Asteroid& currentAsteroid)
 			if (distance <= ASTEROID_RADIUS) {
 				//Bullet Impact
 				currentBullet->Reset();
-				player->points += 20;
 				DivideAsteroid(currentAsteroid);
 			}
 		}
@@ -58,24 +58,27 @@ void AsteroidsManager::CollisionController(Asteroid& currentAsteroid)
 void AsteroidsManager::DivideAsteroid(Asteroid & currentAsteroid)
 {
 	if (currentAsteroid.asteroidState == "BIG") {
+		player->points += 20;
 		currentAsteroid.ChangeSprite(ObjectID::MEDIUM_ASTEROID1, 39, 39);
 		currentAsteroid.asteroidState = "MEDIUM";
-		numAsteroids++;
+		currentAsteroid.speed *= 3;
+		currentAsteroid.RandomizeDirection();
 
-		currentAsteroid.speed *= 2;
+		numAsteroids++;
 		Asteroid* temp = new Asteroid[numAsteroids];
 		for (int i = 0; i < numAsteroids - 1; i++) {
 			temp[i] = asteroidsPool[i];
 		}
 		temp[numAsteroids-1] = currentAsteroid;
-		temp[numAsteroids - 1].InversDirection();
+		temp[numAsteroids - 1].RandomizeDirection();
 		asteroidsPool = temp;
 		//delete[] temp;
 	}
 	else if (currentAsteroid.asteroidState == "MEDIUM") {
+		player->points += 50;
 		currentAsteroid.ChangeSprite(ObjectID::SMALL_ASTEROID1, 20, 20);
 		currentAsteroid.asteroidState = "SMALL";
-		currentAsteroid.speed *= 2;
+		currentAsteroid.RandomizeDirection();
 
 		numAsteroids++;
 		Asteroid* temp = new Asteroid[numAsteroids];
@@ -83,12 +86,13 @@ void AsteroidsManager::DivideAsteroid(Asteroid & currentAsteroid)
 			temp[i] = asteroidsPool[i];
 		}
 		temp[numAsteroids - 1] = currentAsteroid;
-		temp[numAsteroids - 1].InversDirection();
+		temp[numAsteroids - 1].RandomizeDirection();
 		asteroidsPool = temp;
 		//delete[] temp;
 
 	}
 	else if (currentAsteroid.asteroidState == "SMALL") {
+		player->points += 100;
 		currentAsteroid.Setup();
 	}
 }

@@ -3,6 +3,7 @@
 
 Player::~Player()
 {
+//	delete[] bulletPool;
 }
 
 void Player::Update(float deltaTime)
@@ -12,7 +13,7 @@ void Player::Update(float deltaTime)
 	DoWrap(position);
 	UpdatePosition();
 	if (canShoot) {
-		if (IM.IsKeyDown<KEY_BUTTON_SPACE>()) {
+		if (IM.IsKeyDown<KEY_BUTTON_SPACE>() || IM.IsKeyDown<MOUSE_BUTTON_LEFT>()) {
 			FireWeapon(bulletCounter);
 			bulletCounter++;
 			if (bulletCounter == MAX_BULLETS - 1) bulletCounter = 0;
@@ -26,9 +27,19 @@ void Player::Update(float deltaTime)
 
 
 void Player::UpdateSpeed(float deltaTime) {
-	if (IM.IsKeyHold<KEY_BUTTON_UP>() && speedCounter <= MAX_SPEED) speedCounter += (0.8f * deltaTime);
+
+	if (IM.IsKeyHold<KEY_BUTTON_UP>() || IM.IsKeyHold<'w'>() && speedCounter <= MAX_SPEED) {
+		speedCounter += (0.8f * deltaTime); 
+		desiredVelocity.x = speedCounter*(sin(angle*DEG2RAD));
+		desiredVelocity.y = speedCounter*(cos(angle*DEG2RAD));
+
+	}
+	if (IM.IsKeyDown<KEY_BUTTON_UP>() || IM.IsKeyHold<'w'>()) {
+		previousVelocity = desiredVelocity;
+		angle = playerSprite.angle;;
+	}
 	else {
-		if (speedCounter > 0) speedCounter -= (0.2f*deltaTime);
+		if (speedCounter > 0) speedCounter -= (0.4f*deltaTime);
 	}
 }
 
@@ -54,8 +65,10 @@ void Player::DoWrap(Vector2D& position){
 
 void Player::UpdatePosition(){
 	
-	position.x += speedCounter*(sin(playerSprite.angle*DEG2RAD));
-	position.y -= speedCounter*(cos(playerSprite.angle*DEG2RAD));
+
+
+	position.x += desiredVelocity.x;
+	position.y -= desiredVelocity.y;
 
 
 	playerSprite.transform.x = position.x;
@@ -69,8 +82,6 @@ void Player::FireWeapon(int bullet)
 	circlePosition.x = position.x+width/2 + RADIUS*cos((playerSprite.angle-90)*DEG2RAD);
 	circlePosition.y = position.y+height / 2 + RADIUS*sin((playerSprite.angle-90)*DEG2RAD);
 
-	Vector2D bulletDirection = circlePosition - position;
-	bulletDirection.Normalize();
 	bulletPool[bullet].setPosition(circlePosition);
 	bulletPool[bullet].SetActive(true);
 	bulletPool[bulletCounter].lifeTime = 0;
@@ -79,9 +90,11 @@ void Player::FireWeapon(int bullet)
 
 void Player::UpdateAngle()
 {
-	if (IM.IsKeyHold<KEY_BUTTON_LEFT>()) playerSprite.angle -= 0.002f;
-	if (IM.IsKeyHold<KEY_BUTTON_RIGHT>()) playerSprite.angle += 0.002f;
+	mouseCoords = IM.GetMouseCoords();
 
+	if (IM.IsKeyHold<KEY_BUTTON_LEFT>() || IM.IsKeyHold<'a'>()) playerSprite.angle -= 0.004f;
+	if (IM.IsKeyHold<KEY_BUTTON_RIGHT>() || IM.IsKeyHold<'d'>()) playerSprite.angle += 0.004f;
+	
 	if (playerSprite.angle <= 0) playerSprite.angle = 360;
 	else if (playerSprite.angle >= 360) playerSprite.angle = 0;
 }

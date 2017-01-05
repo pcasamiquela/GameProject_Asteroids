@@ -18,7 +18,7 @@ public:
 	std::string asteroidState;
 	int width, height;
 	float speed;
-	void InversDirection();
+	void RandomizeDirection();
 
 private:
 	Vector2D position;

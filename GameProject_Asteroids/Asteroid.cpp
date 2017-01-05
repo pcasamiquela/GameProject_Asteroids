@@ -11,8 +11,7 @@ void Asteroid::Setup() {
 	
 	srand(rand());
 	position = Vector2D(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT); //Random position inside screen
-	randomDirection = Vector2D(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT) - position; //Random Vector
-	randomDirection.Normalize();
+	RandomizeDirection();
 	width = 92;
 	height = 92;
 	speed = 0.001f;
@@ -49,10 +48,10 @@ Vector2D Asteroid::GetPosition()
 	return centredPosition;
 }
 
-void Asteroid::InversDirection()
+void Asteroid::RandomizeDirection()
 {
-	randomDirection.x *= -1;
-	randomDirection.y *= -1;
+	randomDirection = Vector2D(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT) - position; //Random Vector
+	randomDirection.Normalize();
 }
 
 

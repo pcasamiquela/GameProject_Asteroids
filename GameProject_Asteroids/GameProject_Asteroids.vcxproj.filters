@@ -49,6 +49,9 @@
     <ClCompile Include="AsteroidsManager.cpp">
       <Filter>Model\Entities\Asteroids</Filter>
     </ClCompile>
+    <ClCompile Include="RankingScene.cpp">
+      <Filter>Model\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -125,6 +128,9 @@
     </ClInclude>
     <ClInclude Include="AsteroidsManager.h">
       <Filter>Model\Entities\Asteroids</Filter>
+    </ClInclude>
+    <ClInclude Include="RankingScene.h">
+      <Filter>Model\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
