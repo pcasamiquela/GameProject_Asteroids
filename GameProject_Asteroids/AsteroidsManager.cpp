@@ -86,7 +86,7 @@ void AsteroidsManager::DivideAsteroid(Asteroid & currentAsteroid)
 			temp[i] = asteroidsPool[i];
 		}
 		temp[numAsteroids - 1] = currentAsteroid;
-		temp[numAsteroids - 1].RandomizeDirection();
+		temp[numAsteroids - 1].InverseDirection();
 		asteroidsPool = temp;
 		//delete[] temp;
 

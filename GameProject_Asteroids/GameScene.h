@@ -7,6 +7,10 @@
 #include "AsteroidsManager.h"
 #include "MenuScene.h"
 #include "RankingScene.h"
+#include <XML\rapidxml.hpp>
+#include <fstream>
+#include <sstream>
+
 #define MAX_ASTEROIDS 5
 
 // GameScene class with the main gameplay mode
@@ -27,6 +31,14 @@ private:
 	Button keyboardControl;
 	Button continueButton;
 	Button exitButton;
+
+	//Level Attributes
+	int numAsteroids;
+	float asteroidsVelocity;
+	int playerLifes;
+
+	void Setup();
+	void ReadFromFile(std::string path);
 
 	bool inGameMenu;
 

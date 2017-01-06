@@ -10,13 +10,13 @@ class Player
 {
 
 public:
-	Player(Vector2D _position, int _width, int _height) : position(_position), width(_width), height(_height) {
+	Player(Vector2D _position, int _width, int _height, int _lifes) : position(_position), width(_width), height(_height) {
 		playerSprite = { { int(position.x), int(position.y), width, height }, 0, ObjectID::PLAYER };
 		speedCounter = 0;
 		bulletPool = new Bullets[MAX_BULLETS];
 		bulletCounter = 0;
 		canShoot = true;
-		lifes = 3;
+		lifes = _lifes;
 	};
 	~Player();
 	void Update(float deltaTime);

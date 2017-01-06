@@ -8,9 +8,24 @@ Asteroid::Asteroid()
 }
 
 void Asteroid::Setup() {
-	
-	srand(rand());
-	position = Vector2D(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT); //Random position inside screen
+
+	int randCorner = rand() % 3 + 1;
+	switch (randCorner)
+	{
+	case 1:
+		position = Vector2D(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT/3); //Random position inside screen
+		break;
+	case 2:
+		position = Vector2D(rand() % SCREEN_WIDTH/3, rand() % SCREEN_HEIGHT); //Random position inside screen
+		break;
+	case 3:
+		position = Vector2D(rand() % SCREEN_WIDTH, rand() % (SCREEN_HEIGHT - SCREEN_HEIGHT/3*2) + SCREEN_HEIGHT/3*2); //Random position inside screen
+		break;
+	case 4:
+		position = Vector2D(rand() % (SCREEN_WIDTH - SCREEN_WIDTH / 3 * 2) + SCREEN_WIDTH / 3 * 2, rand() % SCREEN_HEIGHT); //Random position inside screen
+		break;
+	}
+
 	RandomizeDirection();
 	width = 92;
 	height = 92;
@@ -54,6 +69,10 @@ void Asteroid::RandomizeDirection()
 	randomDirection.Normalize();
 }
 
+void Asteroid::InverseDirection() {
+	randomDirection.x *= -1;
+	randomDirection.y *= -1;
+}
 
 
 Asteroid::~Asteroid()

@@ -1,0 +1,13 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+<levelAttributes>
+
+	<attribute category = "asteroids">
+		<velocity>0.001f</velocity>
+		<numAsteroids>5</numAsteroids>
+	</attribute>
+
+	<attribute category = "player">
+		<lifes>5</lifes>
+	</attribute>
+
+</levelAttributes>

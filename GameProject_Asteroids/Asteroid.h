@@ -19,6 +19,7 @@ public:
 	int width, height;
 	float speed;
 	void RandomizeDirection();
+	void InverseDirection();
 
 private:
 	Vector2D position;
