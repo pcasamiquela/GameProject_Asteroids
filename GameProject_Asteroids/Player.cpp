@@ -23,6 +23,11 @@ void Player::Update(float deltaTime)
 		bulletPool[i].Update(deltaTime, playerSprite.angle*DEG2RAD);
 		bulletPool[i].firstShoot = false;
 	}
+
+	inmortalTime += deltaTime*100;
+	blinkTime += deltaTime * 100;
+	if (blinkTime >= 0.5f) blinkTime = 0;
+	if (inmortalTime >= 2)inmortal = false;
 }
 
 
@@ -102,16 +107,10 @@ void Player::UpdateAngle()
 }
 
 
-void Player::Draw()
-{
-	playerSprite.Draw();
-	for (int i = 0; i < MAX_BULLETS; i++) {
-		bulletPool[i].Draw();
-	}
-}
-
 void Player::Reset()
 {
+	inmortal = true;
+	inmortalTime = 0;
 	position.x = SCREEN_WIDTH / 2;
 	position.y = SCREEN_HEIGHT / 2;
 	speedCounter = 0;
@@ -128,5 +127,18 @@ Vector2D Player::GetPosition()
 	centredPosition.x = position.x + width / 2;
 	centredPosition.y = position.y + height / 2;
 	return centredPosition;
+}
+
+void Player::Draw()
+{
+	if (inmortal) {
+		if (blinkTime >= 0.2f) {
+			playerSprite.Draw();
+		}
+	}
+	else playerSprite.Draw();
+	for (int i = 0; i < MAX_BULLETS; i++) {
+		bulletPool[i].Draw();
+	}
 }
 

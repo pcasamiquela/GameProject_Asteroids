@@ -2,7 +2,7 @@
 <levelAttributes>
 
 	<attribute category = "asteroids">
-		<velocity>0.003f</velocity>
+		<velocity>0.0025f</velocity>
 		<numAsteroids>15</numAsteroids>
 	</attribute>
 

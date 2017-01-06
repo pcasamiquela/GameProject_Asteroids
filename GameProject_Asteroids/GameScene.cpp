@@ -20,7 +20,7 @@ GameScene::GameScene(void) :	easyButton(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2.5f +
 
 void GameScene::Setup() {
 	player = new Player(Vector2D(500, 500), 30, 39, playerLifes);
-	asteroidsManager = new AsteroidsManager(numAsteroids, *player);
+	asteroidsManager = new AsteroidsManager(numAsteroids, *player, asteroidsVelocity);
 	inGameMenu = false;
 }
 

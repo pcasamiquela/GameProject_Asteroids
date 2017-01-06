@@ -16,6 +16,8 @@ public:
 		bulletPool = new Bullets[MAX_BULLETS];
 		bulletCounter = 0;
 		canShoot = true;
+		inmortal = true;
+		inmortalTime = 0;
 		lifes = _lifes;
 	};
 	~Player();
@@ -26,7 +28,7 @@ public:
 	Vector2D GetPosition();
 	int lifes;
 	int points;
-
+	bool inmortal;
 	enum ControlState {
 		KEYBOARD,
 		MOUSE
@@ -41,6 +43,8 @@ private:
 	float speedCounter;
 	float angle;
 	bool canShoot;
+	float inmortalTime;
+	float blinkTime; //parpadeo
 
 	Sprite playerSprite;
 	Bullets* bulletPool;

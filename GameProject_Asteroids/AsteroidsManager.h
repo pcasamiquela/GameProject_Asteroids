@@ -7,7 +7,7 @@
 class AsteroidsManager
 {
 public:
-	AsteroidsManager(int numAsteroids, Player &_player);
+	AsteroidsManager(int numAsteroids, Player &_player, float asteroidsVelocity);
 	~AsteroidsManager();
 	void Update();
 	void Draw();

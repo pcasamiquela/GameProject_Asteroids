@@ -3,12 +3,12 @@
 
 
 
-AsteroidsManager::AsteroidsManager(int _numAsteroids, Player& _player)
+AsteroidsManager::AsteroidsManager(int _numAsteroids, Player& _player, float asteroidsVelocity)
 {
 	numAsteroids = _numAsteroids;
 	player = &_player;
 	asteroidsPool = new Asteroid[numAsteroids];
-
+	for(int i = 0; i < numAsteroids; i++) asteroidsPool[i].speed = asteroidsVelocity;
 }
 
 AsteroidsManager::~AsteroidsManager()
@@ -30,13 +30,15 @@ void AsteroidsManager::CollisionController(Asteroid& currentAsteroid)
 	Vector2D distanceFromAsteroid;
 	float distance;
 	//Player Collisions
-	distanceFromAsteroid.x = player->GetPosition().x - currentAsteroid.GetPosition().x;
-	distanceFromAsteroid.y = player->GetPosition().y  - currentAsteroid.GetPosition().y;
+	if (!player->inmortal) {
+		distanceFromAsteroid.x = player->GetPosition().x - currentAsteroid.GetPosition().x;
+		distanceFromAsteroid.y = player->GetPosition().y - currentAsteroid.GetPosition().y;
 
-	distance = distanceFromAsteroid.Length();
-	if (distance <= PLAYER_RADIUS+ASTEROID_RADIUS) {
-		player->lifes--;
-		player->Reset();
+		distance = distanceFromAsteroid.Length();
+		if (distance <= PLAYER_RADIUS + ASTEROID_RADIUS) {
+			player->lifes--;
+			player->Reset();
+		}
 	}
 
 	//BulletCollisions
