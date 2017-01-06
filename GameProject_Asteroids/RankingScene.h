@@ -2,8 +2,7 @@
 #include "Scene.h"
 #include "Button.h"
 #include "Constants.h"
-#include "Player.h"
-#include "MenuScene.h"
+#include "System.h"
 
 class RankingScene : public Scene{
 public:
@@ -14,7 +13,10 @@ public:
 	void Update(void) override;
 	void Draw(void) override;
 private:
-	std::string name;
-	void RequestName();
+	Button exitButton;
+	vector<std::string> namePool;
+	vector<int> scorePool;
+	void ReadRanking();
+	bool isRead = false;
 };
 

@@ -1,6 +1,7 @@
 #include "MenuScene.h"
 #include "System.h"
 #include "Logger.h"
+#include "RankingScene.h"
 using namespace Logger;
 
 

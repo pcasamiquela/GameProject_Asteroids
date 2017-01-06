@@ -46,7 +46,6 @@ void GameScene::Update(void) {
 		switch (currentState)
 		{
 		case PLAY:
-			if (player->lifes <= 0) SM.SetCurScene<RankingScene>();
 			if (IM.IsKeyDown<KEY_BUTTON_ESCAPE>())inGameMenu = true;
 			asteroidsManager->Update();
 			player->Update(TM.GetDeltaTime() / 100000);
@@ -105,7 +104,7 @@ void GameScene::Draw(void) {
 
 	switch (currentState) {
 	case PLAY:
-		GUI::DrawTextBlended<FontID::HYPERSPACE>(std::to_string(player->points),
+		GUI::DrawTextBlended<FontID::HYPERSPACE>(std::to_string(player->score),
 		{ 100, 40, 1, 1 },
 		{ 255, 255, 255 });
 

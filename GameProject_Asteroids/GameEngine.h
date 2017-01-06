@@ -30,7 +30,7 @@ namespace GameEngine {
 		LoadMedia(); // Loads the resource assets
 		AddScenes(); // Loads the scenes
 		bool m_isRunning = true; // Decides if the game loop is running
-		Scene *&m_curScene(SM.GetCurScene()); // Defines a reference to a pointer that points to the current scene pointer (mindblown)
+		Scene *&m_curScene(SM.GetCurScene()); // Defines a reference to a pointer that score to the current scene pointer (mindblown)
 		while (!IM.HasQuit() && m_isRunning) { // Checks while game's still playable
 			TM.FPSBegin(); // Calculates the time difference for deltaTime and FPS limiting purposes
 #pragma region GAME_UPDATE

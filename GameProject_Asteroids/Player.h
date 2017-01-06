@@ -4,6 +4,8 @@
 #include <math.h>
 #include "Constants.h"
 #include "Bullets.h"
+#include "RankingScene.h"
+
 #define MAX_SPEED 0.005f
 #define RADIUS 25.0f
 class Player
@@ -15,6 +17,7 @@ public:
 		speedCounter = 0;
 		bulletPool = new Bullets[MAX_BULLETS];
 		bulletCounter = 0;
+		score = 0;
 		canShoot = true;
 		inmortal = true;
 		inmortalTime = 0;
@@ -27,7 +30,7 @@ public:
 	Bullets& GetCurrentBullet(int i);
 	Vector2D GetPosition();
 	int lifes;
-	int points;
+	int score;
 	bool inmortal;
 	enum ControlState {
 		KEYBOARD,
@@ -45,7 +48,7 @@ private:
 	bool canShoot;
 	float inmortalTime;
 	float blinkTime; //parpadeo
-
+	std::string name;
 	Sprite playerSprite;
 	Bullets* bulletPool;
 
@@ -57,6 +60,7 @@ private:
 	void UpdatePosition();
 	void FireWeapon(int bullet);
 	int bulletCounter;
+	void WriteRanking();
 
 };
 

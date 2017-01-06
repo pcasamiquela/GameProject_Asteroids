@@ -6,9 +6,7 @@
 #include "Player.h"
 #include "AsteroidsManager.h"
 #include "MenuScene.h"
-#include "RankingScene.h"
 #include <XML\rapidxml.hpp>
-#include <fstream>
 #include <sstream>
 
 #define MAX_ASTEROIDS 5
@@ -22,6 +20,7 @@ public:
 	void OnExit(void) override;
 	void Update(void) override;
 	void Draw(void) override;
+
 private:
 	Button easyButton;
 	Button mediumButton;
@@ -42,8 +41,8 @@ private:
 
 	bool inGameMenu;
 
-	int m_score{ 0 };
 	Player* player;
+
 	AsteroidsManager* asteroidsManager;
 	Sprite lifeCounter;
 	enum State {

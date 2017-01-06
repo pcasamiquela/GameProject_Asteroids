@@ -60,7 +60,7 @@ void AsteroidsManager::CollisionController(Asteroid& currentAsteroid)
 void AsteroidsManager::DivideAsteroid(Asteroid & currentAsteroid)
 {
 	if (currentAsteroid.asteroidState == "BIG") {
-		player->points += 20;
+		player->score += 20;
 		currentAsteroid.ChangeSprite(ObjectID::MEDIUM_ASTEROID1, 39, 39);
 		currentAsteroid.asteroidState = "MEDIUM";
 		currentAsteroid.speed *= 3;
@@ -77,7 +77,7 @@ void AsteroidsManager::DivideAsteroid(Asteroid & currentAsteroid)
 		//delete[] temp;
 	}
 	else if (currentAsteroid.asteroidState == "MEDIUM") {
-		player->points += 50;
+		player->score += 50;
 		currentAsteroid.ChangeSprite(ObjectID::SMALL_ASTEROID1, 20, 20);
 		currentAsteroid.asteroidState = "SMALL";
 		currentAsteroid.RandomizeDirection();
@@ -94,7 +94,7 @@ void AsteroidsManager::DivideAsteroid(Asteroid & currentAsteroid)
 
 	}
 	else if (currentAsteroid.asteroidState == "SMALL") {
-		player->points += 100;
+		player->score += 100;
 		currentAsteroid.Setup();
 	}
 }
@@ -102,13 +102,13 @@ void AsteroidsManager::DivideAsteroid(Asteroid & currentAsteroid)
 
 void AsteroidsManager::Draw()
 {
-	Sprite* points = new Sprite[360];
+	Sprite* score = new Sprite[360];
 
 	//Render Player Sphere Collision
 
 	//for (int j = 0; j < 360; j++) {
-	//	points[j] = { { int(player->GetPosition().x + PLAYER_RADIUS*cos(j*DEG2RAD)),int(player->GetPosition().y + PLAYER_RADIUS*sin(j*DEG2RAD)), 8,8 }, 0, ObjectID::BULLET };
-	//	points[j].Draw();
+	//	score[j] = { { int(player->GetPosition().x + PLAYER_RADIUS*cos(j*DEG2RAD)),int(player->GetPosition().y + PLAYER_RADIUS*sin(j*DEG2RAD)), 8,8 }, 0, ObjectID::BULLET };
+	//	score[j].Draw();
 	//}
 
 	for (int i = 0; i < numAsteroids; i++) {
@@ -116,8 +116,8 @@ void AsteroidsManager::Draw()
 		//Render Asteroids Sphere Collsion
 
 		//for (int j = 0; j < 360; j++) {
-		//	points[j] = { { int(asteroidsPool[i].GetPosition().x + asteroidsPool[i].width/2*cos(j*DEG2RAD)),int(asteroidsPool[i].GetPosition().y + asteroidsPool[i].width/2*sin(j*DEG2RAD)), 8,8 }, 0, ObjectID::BULLET };
-		//	points[j].Draw();
+		//	score[j] = { { int(asteroidsPool[i].GetPosition().x + asteroidsPool[i].width/2*cos(j*DEG2RAD)),int(asteroidsPool[i].GetPosition().y + asteroidsPool[i].width/2*sin(j*DEG2RAD)), 8,8 }, 0, ObjectID::BULLET };
+		//	score[j].Draw();
 		//}
 
 		asteroidsPool[i].Draw();

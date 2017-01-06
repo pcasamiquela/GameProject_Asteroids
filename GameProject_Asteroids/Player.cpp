@@ -28,6 +28,11 @@ void Player::Update(float deltaTime)
 	blinkTime += deltaTime * 100;
 	if (blinkTime >= 0.5f) blinkTime = 0;
 	if (inmortalTime >= 2)inmortal = false;
+
+	if (lifes <= 0) {
+		WriteRanking();
+		SM.SetCurScene<RankingScene>();
+	}
 }
 
 
@@ -92,6 +97,44 @@ void Player::FireWeapon(int bullet)
 	bulletPool[bullet].setPosition(circlePosition);
 	bulletPool[bullet].SetActive(true);
 	bulletPool[bulletCounter].lifeTime = 0;
+}
+
+void Player::WriteRanking()
+{
+	system("cls");
+	std::cout << "ENTER YOUR NAME" << std::endl;
+	std::cin >> name;
+
+	vector<std::string> tempNames;
+	vector<int> tempScores;
+	std::string rankName;
+	int rankScore;
+	bool isStored = false;
+
+	std::ifstream inFile;
+	inFile.open("./../res/lvl/ranking.txt");
+	if(inFile.is_open())
+	for (int i = 0; i < 10; i++) {
+		inFile >> rankName >> rankScore;
+		if (rankScore < score && !isStored) {
+			tempNames.push_back(name);
+			tempScores.push_back(score);
+			isStored = true;
+		}
+		tempNames.push_back(rankName);
+		tempScores.push_back(rankScore);
+	}
+	inFile.close();
+
+	std::ofstream outFile;
+	outFile.open("./../res/lvl/ranking.txt");
+	if (outFile.is_open()) {
+		for (int i = 0; i < 10; i++) {
+			outFile << tempNames[i] << " " << tempScores[i] << std::endl;
+		}
+
+	}
+	outFile.close();
 }
 
 
