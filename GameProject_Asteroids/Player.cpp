@@ -23,7 +23,10 @@ void Player::Update(float deltaTime)
 		bulletPool[i].Update(deltaTime, playerSprite.angle*DEG2RAD);
 		bulletPool[i].firstShoot = false;
 	}
-
+	if (IM.IsKeyDown<'q'>()) {
+		position.x = rand() % SCREEN_WIDTH;
+		position.y = rand() % SCREEN_HEIGHT;
+	}
 	inmortalTime += deltaTime*100;
 	blinkTime += deltaTime * 100;
 	if (blinkTime >= 0.5f) blinkTime = 0;
@@ -45,7 +48,7 @@ void Player::UpdateSpeed(float deltaTime) {
 		if (speedCounter >= 0.0f)speedCounter -= 0.2f*deltaTime;
 	}
 
-	if (IM.IsKeyDown<KEY_BUTTON_UP>() || IM.IsKeyHold<'w'>()) {
+	if (IM.IsKeyDown<KEY_BUTTON_UP>() || IM.IsKeyDown<'w'>()) {
 		previousVelocity = desiredVelocity;
 		angle = playerSprite.angle;;
 		speedCounter=speedCounter/3;
