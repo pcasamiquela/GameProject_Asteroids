@@ -3,7 +3,8 @@
 
 	<attribute category = "asteroids">
 		<velocity>0.0025f</velocity>
-		<numAsteroids>15</numAsteroids>
+		<numAsteroids>20</numAsteroids>
+		<incrementalSpeed>5</incrementalSpeed>
 	</attribute>
 
 	<attribute category = "player">

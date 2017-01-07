@@ -38,11 +38,11 @@ void Player::Update(float deltaTime)
 
 void Player::UpdateSpeed(float deltaTime) {
 	if (IM.IsKeyHold<KEY_BUTTON_UP>() || IM.IsKeyHold<'w'>()){
-		if(speedCounter <= MAX_SPEED) speedCounter += (0.6f * deltaTime); 
+		if(speedCounter <= MAX_SPEED) speedCounter += (0.7f * deltaTime); 
 	}
 
 	else {
-		if (speedCounter >= 0.0f)speedCounter -= 0.3f*deltaTime;
+		if (speedCounter >= 0.0f)speedCounter -= 0.2f*deltaTime;
 	}
 
 	if (IM.IsKeyDown<KEY_BUTTON_UP>() || IM.IsKeyHold<'w'>()) {

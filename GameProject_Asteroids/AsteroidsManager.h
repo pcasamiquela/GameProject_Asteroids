@@ -7,7 +7,7 @@
 class AsteroidsManager
 {
 public:
-	AsteroidsManager(int numAsteroids, Player &_player, float asteroidsVelocity);
+	AsteroidsManager(int numAsteroids, Player &_player, float asteroidsVelocity, float _incrementalSpeed);
 	~AsteroidsManager();
 	void Update();
 	void Draw();
@@ -15,6 +15,9 @@ private:
 	Asteroid* asteroidsPool;
 	Player* player;
 	int numAsteroids;
+	float incrementalSpeed;
+	float timeLapse;
+
 	void  CollisionController(Asteroid& currentAsteroid);
 	void DivideAsteroid(Asteroid& currentAsteroid);
 	void CreateAsteroidFromAsteroid(Asteroid& currentAsteroid);

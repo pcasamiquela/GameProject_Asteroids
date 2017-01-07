@@ -1,4 +1,5 @@
 Pol 9510
+Player1 7020
 Segismundo 2570
 Pepito 900
 Pol 810
@@ -7,4 +8,3 @@ Zacarias 700
 Carmen 600
 Pancracio 500
 Dolores 400
-Marisol 300

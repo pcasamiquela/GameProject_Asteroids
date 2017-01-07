@@ -20,7 +20,7 @@ GameScene::GameScene(void) :	easyButton(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2.5f +
 
 void GameScene::Setup() {
 	player = new Player(Vector2D(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), 30, 39, playerLifes);
-	asteroidsManager = new AsteroidsManager(numAsteroids, *player, asteroidsVelocity);
+	asteroidsManager = new AsteroidsManager(numAsteroids, *player, asteroidsVelocity, incrementalSpeed);
 	inGameMenu = false;
 }
 
@@ -100,6 +100,37 @@ void GameScene::Update(void) {
 	}
 }
 
+void GameScene::ReadFromFile(std::string path)
+{
+	rapidxml::xml_document<> doc;
+	std::ifstream file(path);
+	if (file.is_open()) {
+		std::stringstream buffer;
+		buffer << file.rdbuf();
+		std::string content(buffer.str());
+		doc.parse<0>(&content[0]);
+
+		std::cout << "Reading:" << doc.first_node()->name() << "\n";
+		rapidxml::xml_node<> *pRoot = doc.first_node();
+
+		for (rapidxml::xml_node<> *pNode = pRoot->first_node("attribute"); pNode; pNode = pNode->next_sibling()) {
+
+			std::cout << pNode->name() << ':' << '\n';
+			for (rapidxml::xml_node<> *pNodeI = pNode->first_node(); pNodeI; pNodeI = pNodeI->next_sibling()) {
+
+				std::string attribute = pNodeI->name();
+				std::string value = pNodeI->value();
+
+				if (attribute == "velocity")asteroidsVelocity = stof(value, NULL);
+				else if (attribute == "numAsteroids") numAsteroids = stof(value, NULL);
+				else if (attribute == "incrementalSpeed") incrementalSpeed = stof(value, NULL);
+				else if (attribute == "lifes") playerLifes = stof(value, NULL);
+				std::cout << pNodeI->name() << ':' << pNodeI->value() << '\n';
+			}
+		}
+	}
+}
+
 void GameScene::Draw(void) {
 
 	switch (currentState) {
@@ -143,32 +174,3 @@ void GameScene::Draw(void) {
 	}
 }
 
-void GameScene::ReadFromFile(std::string path)
-{
-	rapidxml::xml_document<> doc;
-	std::ifstream file(path);
-	if (file.is_open()) {
-		std::stringstream buffer;
-		buffer << file.rdbuf();
-		std::string content(buffer.str());
-		doc.parse<0>(&content[0]);
-
-		std::cout << "Reading:" << doc.first_node()->name() << "\n";
-		rapidxml::xml_node<> *pRoot = doc.first_node();
-
-		for (rapidxml::xml_node<> *pNode = pRoot->first_node("attribute"); pNode; pNode = pNode->next_sibling()) {
-
-			std::cout << pNode->name() << ':' << '\n';
-			for (rapidxml::xml_node<> *pNodeI = pNode->first_node(); pNodeI; pNodeI = pNodeI->next_sibling()) {
-
-				std::string attribute = pNodeI->name();
-				std::string value = pNodeI->value();
-			
-				if(attribute == "velocity")asteroidsVelocity = stof(value, NULL);
-				else if (attribute == "numAsteroids") numAsteroids = stof(value, NULL);
-				else if(attribute == "lifes") playerLifes = stof(value, NULL);
-				std::cout << pNodeI->name() << ':' << pNodeI->value() << '\n'; 
-			}
-		}
-	}
-}

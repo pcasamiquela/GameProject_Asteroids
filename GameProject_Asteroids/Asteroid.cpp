@@ -15,16 +15,16 @@ void Asteroid::Setup() {
 	switch (randCorner)
 	{
 	case 1:
-		position = Vector2D(rand() % SCREEN_WIDTH, rand() % int(playerPosition.y-200)); //Random position inside screen
+		position = Vector2D(rand() % SCREEN_WIDTH, rand() % int(playerPosition.y-150)); //Random position inside up zone
 		break;
 	case 2:
-		position = Vector2D(rand() % int(playerPosition.x - 200), rand() % SCREEN_HEIGHT); //Random position inside screen
+		position = Vector2D(rand() % int(playerPosition.x - 200), rand() % SCREEN_HEIGHT); //Random position inside left zone
 		break;
 	case 3:
-		position = Vector2D(rand() % SCREEN_WIDTH, rand() % (SCREEN_HEIGHT - int(playerPosition.y + 200)) + int(playerPosition.y + 200)); //Random position inside screen
+		position = Vector2D(rand() % SCREEN_WIDTH, rand() % (SCREEN_HEIGHT - int(playerPosition.y + 150)) + int(playerPosition.y + 150)); //Random position inside bottom zone
 		break;
 	case 4:
-		position = Vector2D(rand() % (SCREEN_WIDTH - int(playerPosition.x + 50)) + int(playerPosition.x + 50), rand() % SCREEN_HEIGHT); //Random position inside screen
+		position = Vector2D(rand() % (SCREEN_WIDTH - int(playerPosition.x + 150)) + int(playerPosition.x + 150), rand() % SCREEN_HEIGHT); //Random position right zone
 		break;
 	}
 
@@ -105,21 +105,21 @@ void Asteroid::UpdatePosition(float deltaTime)
 
 void Asteroid::DoWrap(Vector2D & position)
 {
-	if (position.x > SCREEN_WIDTH + 100)
+	if (position.x > SCREEN_WIDTH + 50)
 	{
-		position.x = -100.0f;
+		position.x = -50.0f;
 	}
-	else if (position.x < -100)
+	else if (position.x < -50)
 	{
-		position.x = SCREEN_WIDTH + 100;
+		position.x = SCREEN_WIDTH + 50;
 	}
 
-	if (position.y > SCREEN_HEIGHT + 100)
+	if (position.y > SCREEN_HEIGHT + 50)
 	{
-		position.y = -100.0f;
+		position.y = -50.0f;
 	}
-	else if (position.y < -100.0f)
+	else if (position.y < -50.0f)
 	{
-		position.y = SCREEN_HEIGHT+100.;
+		position.y = SCREEN_HEIGHT + 50.;
 	}
 }

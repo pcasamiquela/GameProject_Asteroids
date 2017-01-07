@@ -3,15 +3,17 @@
 
 
 
-AsteroidsManager::AsteroidsManager(int _numAsteroids, Player& _player, float asteroidsVelocity)
+AsteroidsManager::AsteroidsManager(int _numAsteroids, Player& _player, float asteroidsVelocity, float _incrementalSpeed)
 {
 	numAsteroids = _numAsteroids;
 	player = &_player;
+	incrementalSpeed = _incrementalSpeed;
+	timeLapse = 0;
+
 	asteroidsPool = new Asteroid[numAsteroids];
 	for (int i = 0; i < numAsteroids; i++) {
 		asteroidsPool[i].speed = asteroidsVelocity;
 		asteroidsPool[i].id = i;
-
 	}
 }
 
@@ -28,6 +30,11 @@ void AsteroidsManager::Update()
 		asteroidsPool[i].playerPosition = player->GetPosition();
 	}
 	if (IM.IsKeyDown<MOUSE_BUTTON_MIDDLE>())CreateAsteroid();
+	timeLapse += TM.GetDeltaTime()*0.001f;
+	if (timeLapse >= incrementalSpeed) {
+		CreateAsteroid();
+		timeLapse = 0;
+	}
 }
 
 void AsteroidsManager::CollisionController(Asteroid& currentAsteroid)
