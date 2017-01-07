@@ -13,7 +13,7 @@ void Player::Update(float deltaTime)
 	DoWrap(position);
 	UpdatePosition();
 	if (canShoot) {
-		if (IM.IsKeyDown<KEY_BUTTON_SPACE>() || IM.IsKeyDown<MOUSE_BUTTON_LEFT>()) {
+		if (IM.IsKeyDown<KEY_BUTTON_SPACE>()) {
 			FireWeapon(bulletCounter);
 			bulletCounter++;
 			if (bulletCounter == MAX_BULLETS - 1) bulletCounter = 0;

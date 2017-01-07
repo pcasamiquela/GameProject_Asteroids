@@ -16,6 +16,8 @@ namespace GameEngine {
 		R.LoadTexture<ObjectID::BIG_ASTEROID3>("gfx/bigAsteroid3.png");
 		R.LoadTexture<ObjectID::MEDIUM_ASTEROID1>("gfx/mediumAsteroid1.png");
 		R.LoadTexture<ObjectID::SMALL_ASTEROID1>("gfx/smallAsteroid1.png");
+		R.LoadTexture<ObjectID::OVNI>("gfx/ovni.png");
+
 	}
 	void AddScenes(void) {
 		SM.AddScene<MenuScene>();

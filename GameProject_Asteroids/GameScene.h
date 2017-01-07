@@ -5,6 +5,7 @@
 #include "Constants.h"
 #include "Player.h"
 #include "AsteroidsManager.h"
+#include "OvniManager.h"
 #include "MenuScene.h"
 #include <XML\rapidxml.hpp>
 #include <sstream>
@@ -34,6 +35,8 @@ private:
 	double asteroidsVelocity;
 	float incrementalSpeed;
 	int targetLevelAsteroid;
+	float ovniSpeed;
+	float ovniSpawnTime;
 
 	int playerLifes;
 
@@ -45,6 +48,8 @@ private:
 	Player* player;
 
 	AsteroidsManager* asteroidsManager;
+	OvniManager* ovniManager;
+
 	Sprite lifeCounter;
 	enum State {
 		PLAY,

@@ -121,6 +121,8 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuScene.cpp" />
+    <ClCompile Include="Ovni.cpp" />
+    <ClCompile Include="OvniManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RankingScene.cpp" />
   </ItemGroup>
@@ -139,6 +141,8 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="MenuScene.h" />
+    <ClInclude Include="Ovni.h" />
+    <ClInclude Include="OvniManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RankingScene.h" />
     <ClInclude Include="Render.h" />

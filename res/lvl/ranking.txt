@@ -1,10 +1,10 @@
 Player2 10420
 Pol 9510
 Player1 7020
+Pol 4050
 Segismundo 2570
 Pepito 900
 Pol 810
 Manuel 800
 Zacarias 700
 Carmen 600
-Pancracio 500

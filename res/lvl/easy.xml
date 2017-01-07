@@ -12,5 +12,8 @@
 	<attribute category = "player">
 		<lifes>5</lifes>
 	</attribute>
-
+	<attribute category = "ovni" >
+		<ovniSpeed>0.0025f</ovniSpeed>
+		<ovniSpawnTime>5</ovniSpawnTime>
+	</attribute>
 </levelAttributes>

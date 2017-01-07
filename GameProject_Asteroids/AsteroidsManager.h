@@ -1,8 +1,6 @@
 #pragma once
 #include "Asteroid.h"
 #include "Player.h"
-#define ASTEROID_RADIUS currentAsteroid.width/2
-#define PLAYER_RADIUS 15
 
 class AsteroidsManager
 {
@@ -11,6 +9,8 @@ public:
 	~AsteroidsManager();
 	void Update();
 	void Draw();
+	int GetLevel();
+
 private:
 	Asteroid* asteroidsPool;
 	Player* player;

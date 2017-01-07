@@ -25,6 +25,9 @@
     <Filter Include="Model\Scenes">
       <UniqueIdentifier>{f7be73a7-59d5-43b8-9434-6a68669bc0ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Model\Entities\Ovni">
+      <UniqueIdentifier>{f69edcde-801e-4393-aa90-a8262b686910}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -51,6 +54,12 @@
     </ClCompile>
     <ClCompile Include="RankingScene.cpp">
       <Filter>Model\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Ovni.cpp">
+      <Filter>Model\Entities\Ovni</Filter>
+    </ClCompile>
+    <ClCompile Include="OvniManager.cpp">
+      <Filter>Model\Entities\Ovni</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +140,12 @@
     </ClInclude>
     <ClInclude Include="RankingScene.h">
       <Filter>Model\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Ovni.h">
+      <Filter>Model\Entities\Ovni</Filter>
+    </ClInclude>
+    <ClInclude Include="OvniManager.h">
+      <Filter>Model\Entities\Ovni</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -181,12 +181,17 @@ void AsteroidsManager::NextLevel()
 	level++;
 }
 
+int AsteroidsManager::GetLevel()
+{
+	return level;
+}
+
 
 void AsteroidsManager::Draw()
 {
-	Sprite* score = new Sprite[360];
 
 	//Render Player Sphere Collision
+	//Sprite* score = new Sprite[360];
 
 	//for (int j = 0; j < 360; j++) {
 	//	score[j] = { { int(player->GetPosition().x + PLAYER_RADIUS*cos(j*DEG2RAD)),int(player->GetPosition().y + PLAYER_RADIUS*sin(j*DEG2RAD)), 8,8 }, 0, ObjectID::BULLET };
@@ -201,6 +206,7 @@ void AsteroidsManager::Draw()
 	{ 255, 255, 255 });
 
 	for (int i = 0; i < numAsteroids; i++) {
+		asteroidsPool[i].Draw();
 
 		//Render Asteroids Sphere Collsion
 
@@ -208,8 +214,6 @@ void AsteroidsManager::Draw()
 		//	score[j] = { { int(asteroidsPool[i].GetPosition().x + asteroidsPool[i].width/2*cos(j*DEG2RAD)),int(asteroidsPool[i].GetPosition().y + asteroidsPool[i].width/2*sin(j*DEG2RAD)), 8,8 }, 0, ObjectID::BULLET };
 		//	score[j].Draw();
 		//}
-
-		asteroidsPool[i].Draw();
 	}
 }
 

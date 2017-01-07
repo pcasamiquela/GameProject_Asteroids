@@ -19,6 +19,7 @@ GameScene::GameScene(void) :	easyButton(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2.5f +
 void GameScene::Setup() {
 	player = new Player(Vector2D(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), 30, 39, playerLifes);
 	asteroidsManager = new AsteroidsManager(numAsteroids, *player, asteroidsVelocity, incrementalSpeed, targetLevelAsteroid);
+	ovniManager = new OvniManager(*player, ovniSpeed, ovniSpawnTime);
 	inGameMenu = false;
 }
 
@@ -39,6 +40,7 @@ void GameScene::Update(void) {
 	if (IM.IsMouseDown<MOUSE_BUTTON_LEFT>()) {
 		mouseCoords = IM.GetMouseCoords();
 	}
+	else mouseCoords.x = 0;
 
 	if (!inGameMenu) {
 		switch (currentState)
@@ -46,24 +48,22 @@ void GameScene::Update(void) {
 		case PLAY:
 			if (IM.IsKeyDown<KEY_BUTTON_ESCAPE>())inGameMenu = true;
 			asteroidsManager->Update();
+			ovniManager->Update(asteroidsManager->GetLevel());
 			player->Update(TM.GetDeltaTime() / 100000);
 			break;
 
 		case DIFFICULTY_MENU:
 			if (easyButton.ClickButton(mouseCoords.x, mouseCoords.y)) {
-				mouseCoords.x = 0;
 				ReadFromFile("./../res/lvl/easy.xml");
 				Setup();
 				currentState = PLAY;
 			}
 			if (mediumButton.ClickButton(mouseCoords.x, mouseCoords.y)) {
-				mouseCoords.x = 0;
 				ReadFromFile("./../res/lvl/medium.xml");
 				Setup();
 				currentState = PLAY;
 			}
 			if (hardButton.ClickButton(mouseCoords.x, mouseCoords.y)) {
-				mouseCoords.x = 0;
 				ReadFromFile("./../res/lvl/hard.xml");
 				Setup();
 				currentState = PLAY;
@@ -109,6 +109,8 @@ void GameScene::ReadFromFile(std::string path)
 				else if (attribute == "numAsteroids") numAsteroids = stof(value, NULL);
 				else if (attribute == "incrementalSpeed") incrementalSpeed = stof(value, NULL);
 				else if (attribute == "targetLevelAsteroid") targetLevelAsteroid = stof(value, NULL);
+				else if (attribute == "ovniSpeed") ovniSpeed = stof(value, NULL);
+				else if (attribute == "ovniSpawnTime") ovniSpawnTime = stof(value, NULL);
 				else if (attribute == "lifes") playerLifes = stof(value, NULL);
 				std::cout << pNodeI->name() << ':' << pNodeI->value() << '\n';
 			}
@@ -129,6 +131,7 @@ void GameScene::Draw(void)
 		}
 
 		asteroidsManager->Draw();
+		ovniManager->Draw();
 		player->Draw();
 		if (inGameMenu) {
 			GUI::DrawTextBlended<FontID::HYPERSPACE>("PAUSE",
