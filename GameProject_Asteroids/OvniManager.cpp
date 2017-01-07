@@ -19,23 +19,18 @@ OvniManager::~OvniManager()
 
 void OvniManager::Update(int level)
 {
-//	if (IM.IsKeyDown<MOUSE_BUTTON_MIDDLE>()) CreateOvni();
 	for (int i = 0; i < numOvnis; i++) {
-		ovniPool[i].speed = ovniSpeed + level / 1000;
 		ovniPool[i].Update(TM.GetDeltaTime() / 100000);
 		CollisionController(ovniPool[i]);
+		ovniPool[i].speed = ovniSpeed + level / 1000;
+		ovniPool[i].playerPosition = player->GetPosition();
 	}
 	timeLapse += TM.GetDeltaTime()*0.001f;
 	if (timeLapse >= ovniSpawnTime) {
 		CreateOvni();
 		timeLapse = 0;
 	}
-	if (IM.IsKeyDown<'e'>()) {
-		for (int i = 0; i < numOvnis; i++) {
-			ovniPool[i].Shoot();
-		}
-	}
-	//std::cout << ovniPool[0].bullet.GetPosition().x << std::endl;
+
 }
 
 void OvniManager::CollisionController(Ovni & currentOvni)

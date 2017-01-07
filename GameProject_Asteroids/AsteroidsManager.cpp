@@ -34,7 +34,7 @@ void AsteroidsManager::Update()
 		CollisionController(asteroidsPool[i]);
 		asteroidsPool[i].playerPosition = player->GetPosition();
 	}
-	if (IM.IsKeyDown<MOUSE_BUTTON_RIGHT>())CreateAsteroid();
+	//if (IM.IsKeyDown<MOUSE_BUTTON_RIGHT>())CreateAsteroid();
 	timeLapse += TM.GetDeltaTime()*0.001f;
 	
 	if (timeLapse >= incrementalSpeed && numBigAsteroids <= targetLevelAsteroids) {

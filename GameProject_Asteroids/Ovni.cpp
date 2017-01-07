@@ -36,8 +36,8 @@ void Ovni::Update(float deltaTime)
 {
 	DoWrap();
 	UpdatePosition(deltaTime);
-	bullet.Update(deltaTime, bulletAngle);
-	//bullet.firstShoot = false;
+	bullet.Update(TM.GetDeltaTime()/ 100000, bulletAngle);
+	bullet.firstShoot = false;
 }
 
 
@@ -68,11 +68,11 @@ void Ovni::RandomizeDirection()
 	randomDirection.Normalize();
 }
 void Ovni::Shoot() {
+	bullet.firstShoot = true;
+	bullet.setPosition(Vector2D(position.x + 53 / 2, position.y + 30 / 2));
+	bullet.SetActive(true);
 	bullet.lifeTime = 0;
 	bulletAngle = (rand() % 360)*DEG2RAD;
-	bullet.firstShoot = true;
-	bullet.setPosition(Vector2D(position.x+53/2, position.y +30/2));
-	bullet.SetActive(true);
 }
 
 Vector2D Ovni::GetPosition()

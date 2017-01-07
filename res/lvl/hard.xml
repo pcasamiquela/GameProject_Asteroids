@@ -14,5 +14,7 @@
 	</attribute>
 	<attribute category = "ovni" >
 		<ovniSpeed>0.005f</ovniSpeed>
+		<ovniSpawnTime>5</ovniSpawnTime>
+
 	</attribute>
 </levelAttributes>

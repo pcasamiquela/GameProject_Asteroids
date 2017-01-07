@@ -13,6 +13,8 @@
 		<lifes>3</lifes>
 	</attribute>
 	<attribute category = "ovni" >
-		<ovniSpeed>0.005f</ovniSpeed>
+		<ovniSpeed>0.0035f</ovniSpeed>
+		<ovniSpawnTime>5</ovniSpawnTime>
+
 	</attribute>
 </levelAttributes>
