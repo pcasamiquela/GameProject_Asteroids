@@ -17,5 +17,8 @@ private:
 	int numAsteroids;
 	void  CollisionController(Asteroid& currentAsteroid);
 	void DivideAsteroid(Asteroid& currentAsteroid);
+	void CreateAsteroidFromAsteroid(Asteroid& currentAsteroid);
+	void CreateAsteroid();
+	void DeleteAsteroid(Asteroid& currentAsteroid);
 };
 

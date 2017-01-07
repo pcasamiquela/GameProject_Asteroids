@@ -20,6 +20,8 @@ public:
 	float speed;
 	void RandomizeDirection();
 	void InverseDirection();
+	int id;
+	Vector2D playerPosition;
 
 private:
 	Vector2D position;

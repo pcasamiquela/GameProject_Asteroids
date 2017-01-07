@@ -8,7 +8,11 @@ AsteroidsManager::AsteroidsManager(int _numAsteroids, Player& _player, float ast
 	numAsteroids = _numAsteroids;
 	player = &_player;
 	asteroidsPool = new Asteroid[numAsteroids];
-	for(int i = 0; i < numAsteroids; i++) asteroidsPool[i].speed = asteroidsVelocity;
+	for (int i = 0; i < numAsteroids; i++) {
+		asteroidsPool[i].speed = asteroidsVelocity;
+		asteroidsPool[i].id = i;
+
+	}
 }
 
 AsteroidsManager::~AsteroidsManager()
@@ -21,7 +25,9 @@ void AsteroidsManager::Update()
 	for (int i = 0; i < numAsteroids; i++) {
 		asteroidsPool[i].Update(TM.GetDeltaTime() / 100000);
 		CollisionController(asteroidsPool[i]);
+		asteroidsPool[i].playerPosition = player->GetPosition();
 	}
+	if (IM.IsKeyDown<MOUSE_BUTTON_MIDDLE>())CreateAsteroid();
 }
 
 void AsteroidsManager::CollisionController(Asteroid& currentAsteroid)
@@ -65,38 +71,73 @@ void AsteroidsManager::DivideAsteroid(Asteroid & currentAsteroid)
 		currentAsteroid.asteroidState = "MEDIUM";
 		currentAsteroid.speed *= 3;
 		currentAsteroid.RandomizeDirection();
-
-		numAsteroids++;
-		Asteroid* temp = new Asteroid[numAsteroids];
-		for (int i = 0; i < numAsteroids - 1; i++) {
-			temp[i] = asteroidsPool[i];
-		}
-		temp[numAsteroids-1] = currentAsteroid;
-		temp[numAsteroids - 1].RandomizeDirection();
-		asteroidsPool = temp;
-		//delete[] temp;
+		CreateAsteroidFromAsteroid(currentAsteroid);
 	}
 	else if (currentAsteroid.asteroidState == "MEDIUM") {
 		player->score += 50;
 		currentAsteroid.ChangeSprite(ObjectID::SMALL_ASTEROID1, 20, 20);
 		currentAsteroid.asteroidState = "SMALL";
 		currentAsteroid.RandomizeDirection();
-
-		numAsteroids++;
-		Asteroid* temp = new Asteroid[numAsteroids];
-		for (int i = 0; i < numAsteroids - 1; i++) {
-			temp[i] = asteroidsPool[i];
-		}
-		temp[numAsteroids - 1] = currentAsteroid;
-		temp[numAsteroids - 1].InverseDirection();
-		asteroidsPool = temp;
-		//delete[] temp;
+		CreateAsteroidFromAsteroid(currentAsteroid);
 
 	}
 	else if (currentAsteroid.asteroidState == "SMALL") {
 		player->score += 100;
-		currentAsteroid.Setup();
+		DeleteAsteroid(currentAsteroid);
 	}
+}
+
+
+void AsteroidsManager::CreateAsteroid()
+{
+	numAsteroids++;
+
+	Asteroid* temp = new Asteroid[numAsteroids];
+	for (int i = 0; i < numAsteroids - 1; i++) {
+		temp[i] = asteroidsPool[i];
+	}
+	temp[numAsteroids - 1].Setup();
+	temp[numAsteroids - 1].id = numAsteroids - 1;
+	asteroidsPool = temp;
+
+	//delete[] temp;
+}
+
+void AsteroidsManager::CreateAsteroidFromAsteroid(Asteroid& currentAsteroid)
+{
+	numAsteroids++;
+	Asteroid* temp = new Asteroid[numAsteroids];
+	for (int i = 0; i < numAsteroids - 1; i++) {
+		temp[i] = asteroidsPool[i];
+	}
+	temp[numAsteroids - 1] = currentAsteroid;
+	temp[numAsteroids - 1].id = numAsteroids - 1;
+	temp[numAsteroids - 1].InverseDirection();
+	asteroidsPool = temp;
+
+	//delete[] temp;
+}
+
+
+
+void AsteroidsManager::DeleteAsteroid(Asteroid & currentAsteroid)
+{
+	int it = 0;
+	bool eliminated = false;
+	numAsteroids--;
+	Asteroid* temp = new Asteroid[numAsteroids];
+	for (int i = 0; i < numAsteroids; i++) {
+		if (i == currentAsteroid.id) {
+			it++;
+			eliminated = true;
+		}
+		temp[i] = asteroidsPool[it];
+		if (eliminated) temp[i].id--;
+		it++;
+	}
+
+	asteroidsPool = temp;
+	//delte[] temp;
 }
 
 

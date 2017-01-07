@@ -4,25 +4,27 @@
 
 Asteroid::Asteroid()
 {
+	playerPosition = Vector2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	Setup();
 }
 
 void Asteroid::Setup() {
 
-	int randCorner = rand() % 3 + 1;
+	//Randomize a far position from player
+	int randCorner = rand() % 4 + 1;
 	switch (randCorner)
 	{
 	case 1:
-		position = Vector2D(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT/3); //Random position inside screen
+		position = Vector2D(rand() % SCREEN_WIDTH, rand() % int(playerPosition.y-200)); //Random position inside screen
 		break;
 	case 2:
-		position = Vector2D(rand() % SCREEN_WIDTH/3, rand() % SCREEN_HEIGHT); //Random position inside screen
+		position = Vector2D(rand() % int(playerPosition.x - 200), rand() % SCREEN_HEIGHT); //Random position inside screen
 		break;
 	case 3:
-		position = Vector2D(rand() % SCREEN_WIDTH, rand() % (SCREEN_HEIGHT - SCREEN_HEIGHT/3*2) + SCREEN_HEIGHT/3*2); //Random position inside screen
+		position = Vector2D(rand() % SCREEN_WIDTH, rand() % (SCREEN_HEIGHT - int(playerPosition.y + 200)) + int(playerPosition.y + 200)); //Random position inside screen
 		break;
 	case 4:
-		position = Vector2D(rand() % (SCREEN_WIDTH - SCREEN_WIDTH / 3 * 2) + SCREEN_WIDTH / 3 * 2, rand() % SCREEN_HEIGHT); //Random position inside screen
+		position = Vector2D(rand() % (SCREEN_WIDTH - int(playerPosition.x + 50)) + int(playerPosition.x + 50), rand() % SCREEN_HEIGHT); //Random position inside screen
 		break;
 	}
 
