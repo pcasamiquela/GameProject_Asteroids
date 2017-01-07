@@ -10,8 +10,6 @@ GameScene::GameScene(void) :	easyButton(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2.5f +
 								mediumButton(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 1.97f + 50, SCREEN_WIDTH*0.27f, SCREEN_HEIGHT*0.12f, string("MEDIUM")),
 								hardButton(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 1.6f + 50, SCREEN_WIDTH*0.27f, SCREEN_HEIGHT*0.12f, string("HARD")),
 								backButton(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 1.4f + 50, SCREEN_WIDTH*0.27f, SCREEN_HEIGHT*0.12f, string("BACK")),
-								keyboardControl(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2.5f + 50, SCREEN_WIDTH*0.27f, SCREEN_HEIGHT*0.12f, string("KEYBOARD CONTROL")),
-								mouseControl(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 1.6f + 50, SCREEN_WIDTH*0.27f, SCREEN_HEIGHT*0.12f, string("MOUSE CONTROL")),
 								continueButton(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2.5f + 50, SCREEN_WIDTH*0.27f, SCREEN_HEIGHT*0.12f, string("CONTINUE")),
 								exitButton(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 1.97f + 50, SCREEN_WIDTH*0.27f, SCREEN_HEIGHT*0.12f, string("EXIT")){
 	currentState = DIFFICULTY_MENU;
@@ -56,35 +54,19 @@ void GameScene::Update(void) {
 				mouseCoords.x = 0;
 				ReadFromFile("./../res/lvl/easy.xml");
 				Setup();
-				currentState = CONTROL_MENU;
+				currentState = PLAY;
 			}
 			if (mediumButton.ClickButton(mouseCoords.x, mouseCoords.y)) {
 				mouseCoords.x = 0;
 				ReadFromFile("./../res/lvl/medium.xml");
 				Setup();
-				currentState = CONTROL_MENU;
+				currentState = PLAY;
 			}
 			if (hardButton.ClickButton(mouseCoords.x, mouseCoords.y)) {
 				mouseCoords.x = 0;
 				ReadFromFile("./../res/lvl/hard.xml");
 				Setup();
-				currentState = CONTROL_MENU;
-			}
-			break;
-
-		case CONTROL_MENU:
-			if (keyboardControl.ClickButton(mouseCoords.x, mouseCoords.y)) {
-				player->controlState = Player::ControlState::KEYBOARD;
-				mouseCoords.x = 0;
-
 				currentState = PLAY;
-			}
-			if (mouseControl.ClickButton(mouseCoords.x, mouseCoords.y)) {
-				player->controlState = Player::ControlState::MOUSE;
-				mouseCoords.x = 0;
-
-				currentState = PLAY;
-
 			}
 			break;
 		}
@@ -99,6 +81,8 @@ void GameScene::Update(void) {
 		
 	}
 }
+
+
 
 void GameScene::ReadFromFile(std::string path)
 {
@@ -131,12 +115,11 @@ void GameScene::ReadFromFile(std::string path)
 		}
 	}
 }
-
-void GameScene::Draw(void) {
-
+void GameScene::Draw(void)
+{
 	switch (currentState) {
 	case PLAY:
- 		GUI::DrawTextBlended<FontID::HYPERSPACE>(std::to_string(player->score),
+		GUI::DrawTextBlended<FontID::HYPERSPACE>(std::to_string(player->score),
 		{ 100, 40, 1, 1 },
 		{ 255, 255, 255 });
 
@@ -165,13 +148,5 @@ void GameScene::Draw(void) {
 		mediumButton.Draw();
 		hardButton.Draw();
 		break;
-	case CONTROL_MENU:
-		GUI::DrawTextBlended<FontID::HYPERSPACE>("ASTEROIDS",
-		{ SCREEN_WIDTH / 2 - 135, 135, 2, 2 },
-		{ 255, 255, 255 });
-		keyboardControl.Draw();
-		mouseControl.Draw();
-		break;
 	}
 }
-

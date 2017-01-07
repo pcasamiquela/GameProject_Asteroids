@@ -26,8 +26,6 @@ private:
 	Button mediumButton;
 	Button hardButton;
 	Button backButton;
-	Button mouseControl;
-	Button keyboardControl;
 	Button continueButton;
 	Button exitButton;
 
@@ -50,8 +48,7 @@ private:
 	Sprite lifeCounter;
 	enum State {
 		PLAY,
-		DIFFICULTY_MENU,
-		CONTROL_MENU,
+		DIFFICULTY_MENU
 	};
 	State currentState;
 };
