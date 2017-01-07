@@ -33,8 +33,9 @@ private:
 
 	//Level Attributes
 	int numAsteroids;
-	float asteroidsVelocity;
+	double asteroidsVelocity;
 	float incrementalSpeed;
+	int targetLevelAsteroid;
 
 	int playerLifes;
 

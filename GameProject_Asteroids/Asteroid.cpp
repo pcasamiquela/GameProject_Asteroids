@@ -31,7 +31,6 @@ void Asteroid::Setup() {
 	RandomizeDirection();
 	width = 92;
 	height = 92;
-	speed = 0.001f;
 	asteroidState = "BIG";
 	int randomSprite = rand() % (3) + 1;
 	switch (randomSprite)

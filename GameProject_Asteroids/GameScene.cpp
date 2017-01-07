@@ -20,7 +20,7 @@ GameScene::GameScene(void) :	easyButton(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2.5f +
 
 void GameScene::Setup() {
 	player = new Player(Vector2D(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), 30, 39, playerLifes);
-	asteroidsManager = new AsteroidsManager(numAsteroids, *player, asteroidsVelocity, incrementalSpeed);
+	asteroidsManager = new AsteroidsManager(numAsteroids, *player, asteroidsVelocity, incrementalSpeed, targetLevelAsteroid);
 	inGameMenu = false;
 }
 
@@ -124,6 +124,7 @@ void GameScene::ReadFromFile(std::string path)
 				if (attribute == "velocity")asteroidsVelocity = stof(value, NULL);
 				else if (attribute == "numAsteroids") numAsteroids = stof(value, NULL);
 				else if (attribute == "incrementalSpeed") incrementalSpeed = stof(value, NULL);
+				else if (attribute == "targetLevelAsteroid") targetLevelAsteroid = stof(value, NULL);
 				else if (attribute == "lifes") playerLifes = stof(value, NULL);
 				std::cout << pNodeI->name() << ':' << pNodeI->value() << '\n';
 			}
@@ -135,7 +136,7 @@ void GameScene::Draw(void) {
 
 	switch (currentState) {
 	case PLAY:
-		GUI::DrawTextBlended<FontID::HYPERSPACE>(std::to_string(player->score),
+ 		GUI::DrawTextBlended<FontID::HYPERSPACE>(std::to_string(player->score),
 		{ 100, 40, 1, 1 },
 		{ 255, 255, 255 });
 
