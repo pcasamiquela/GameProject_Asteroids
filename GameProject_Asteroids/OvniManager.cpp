@@ -25,12 +25,11 @@ void OvniManager::Update(int level)
 		ovniPool[i].speed = ovniSpeed + level / 1000;
 		ovniPool[i].playerPosition = player->GetPosition();
 	}
-	timeLapse += TM.GetDeltaTime()*0.001f;
+	timeLapse += TM.GetDeltaTime()/100000;
 	if (timeLapse >= ovniSpawnTime) {
 		CreateOvni();
 		timeLapse = 0;
 	}
-
 }
 
 void OvniManager::CollisionController(Ovni & currentOvni)
@@ -127,7 +126,7 @@ void OvniManager::Draw()
 {
 	if (numOvnis > 0) {
 		for (int i = 0; i < numOvnis; i++) {
-			ovniPool[i].Draw();
+			//ovniPool[i].Draw();
 		}
 	}
 }

@@ -20,7 +20,7 @@ void Player::Update(float deltaTime)
 		}
 	}
 	for (int i = 0; i < MAX_BULLETS; i++) {
-		bulletPool[i].Update(deltaTime, playerSprite.angle*DEG2RAD);
+		bulletPool[i].Update(deltaTime, entitieSprite.angle*DEG2RAD);
 		bulletPool[i].firstShoot = false;
 	}
 	if (IM.IsKeyDown<'q'>()) {
@@ -50,7 +50,7 @@ void Player::UpdateSpeed(float deltaTime) {
 
 	if (IM.IsKeyDown<KEY_BUTTON_UP>() || IM.IsKeyDown<'w'>()) {
 		previousVelocity = desiredVelocity;
-		angle = playerSprite.angle;;
+		angle = entitieSprite.angle;;
 		speedCounter=speedCounter/3;
 	}
 
@@ -58,44 +58,23 @@ void Player::UpdateSpeed(float deltaTime) {
 	desiredVelocity.y = speedCounter*(cos(angle*DEG2RAD));
 }
 
-void Player::DoWrap(Vector2D& position){
-	if (position.x > SCREEN_WIDTH + 25)
-	{
-		position.x = -25.0f;
-	}
-	else if (position.x < -25)
-	{
-		position.x = SCREEN_WIDTH + 25;
-	}
-
-	if (position.y > SCREEN_HEIGHT + 25)
-	{
-		position.y = -25.0f;
-	}
-	else if (position.y < -25)
-	{
-		position.y = SCREEN_HEIGHT + 25;
-	}
-}
 
 void Player::UpdatePosition(){
 	
-
-
 	position.x += desiredVelocity.x;
 	position.y -= desiredVelocity.y;
 
 
-	playerSprite.transform.x = position.x;
-	playerSprite.transform.y = position.y;
+	entitieSprite.transform.x = position.x;
+	entitieSprite.transform.y = position.y;
 }
 
 void Player::FireWeapon(int bullet)
 {
 	bulletPool[bullet].firstShoot = true;
 	Vector2D circlePosition; //To know the direction of bullet, we make a circle and pick a point 
-	circlePosition.x = position.x+width/2 + RADIUS*cos((playerSprite.angle-90)*DEG2RAD);
-	circlePosition.y = position.y+height / 2 + RADIUS*sin((playerSprite.angle-90)*DEG2RAD);
+	circlePosition.x = position.x+width/2 + RADIUS*cos((entitieSprite.angle-90)*DEG2RAD);
+	circlePosition.y = position.y+height / 2 + RADIUS*sin((entitieSprite.angle-90)*DEG2RAD);
 
 	bulletPool[bullet].setPosition(circlePosition);
 	bulletPool[bullet].SetActive(true);
@@ -145,11 +124,11 @@ void Player::UpdateAngle()
 {
 	mouseCoords = IM.GetMouseCoords();
 
-	if (IM.IsKeyHold<KEY_BUTTON_LEFT>() || IM.IsKeyHold<'a'>()) playerSprite.angle -= 0.008f;
-	if (IM.IsKeyHold<KEY_BUTTON_RIGHT>() || IM.IsKeyHold<'d'>()) playerSprite.angle += 0.008f;
+	if (IM.IsKeyHold<KEY_BUTTON_LEFT>() || IM.IsKeyHold<'a'>()) entitieSprite.angle -= 0.008f;
+	if (IM.IsKeyHold<KEY_BUTTON_RIGHT>() || IM.IsKeyHold<'d'>()) entitieSprite.angle += 0.008f;
 	
-	if (playerSprite.angle <= 0) playerSprite.angle = 360;
-	else if (playerSprite.angle >= 360) playerSprite.angle = 0;
+	if (entitieSprite.angle <= 0) entitieSprite.angle = 360;
+	else if (entitieSprite.angle >= 360) entitieSprite.angle = 0;
 }
 
 
@@ -167,22 +146,14 @@ Bullets& Player::GetCurrentBullet(int i)
 	return bulletPool[i];
 }
 
-Vector2D Player::GetPosition()
-{
-	Vector2D centredPosition;
-	centredPosition.x = position.x + width / 2;
-	centredPosition.y = position.y + height / 2;
-	return centredPosition;
-}
-
 void Player::Draw()
 {
 	if (inmortal) {
 		if (blinkTime >= 0.2f) {
-			playerSprite.Draw();
+			entitieSprite.Draw();
 		}
 	}
-	else playerSprite.Draw();
+	else entitieSprite.Draw();
 	for (int i = 0; i < MAX_BULLETS; i++) {
 		bulletPool[i].Draw();
 	}

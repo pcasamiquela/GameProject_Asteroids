@@ -28,15 +28,18 @@
     <Filter Include="Model\Entities\Ovni">
       <UniqueIdentifier>{f69edcde-801e-4393-aa90-a8262b686910}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Model\Scenes\GameScene">
+      <UniqueIdentifier>{febdff47-bd8d-4f65-afa0-5e8717b99d85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Scenes\MenuScene">
+      <UniqueIdentifier>{275d76ee-c6f5-433c-b82e-b360e071e292}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Scenes\RankingScene">
+      <UniqueIdentifier>{184db1ba-4a8c-45a3-a20f-898cdd76e462}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="GameScene.cpp">
-      <Filter>Model\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuScene.cpp">
-      <Filter>Model\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Model\Entities\Player</Filter>
     </ClCompile>
@@ -52,15 +55,22 @@
     <ClCompile Include="AsteroidsManager.cpp">
       <Filter>Model\Entities\Asteroids</Filter>
     </ClCompile>
-    <ClCompile Include="RankingScene.cpp">
-      <Filter>Model\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Ovni.cpp">
       <Filter>Model\Entities\Ovni</Filter>
     </ClCompile>
     <ClCompile Include="OvniManager.cpp">
       <Filter>Model\Entities\Ovni</Filter>
     </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Model\Scenes\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>Model\Scenes\MenuScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RankingScene.cpp">
+      <Filter>Model\Scenes\RankingScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -96,9 +106,6 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Controller</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Model</Filter>
-    </ClInclude>
     <ClInclude Include="Sprite.h">
       <Filter>Model</Filter>
     </ClInclude>
@@ -113,12 +120,6 @@
     </ClInclude>
     <ClInclude Include="TimeManager.h">
       <Filter>Controller</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>Model\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuScene.h">
-      <Filter>Model\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Vector2D.h">
       <Filter>Utils</Filter>
@@ -138,14 +139,26 @@
     <ClInclude Include="AsteroidsManager.h">
       <Filter>Model\Entities\Asteroids</Filter>
     </ClInclude>
-    <ClInclude Include="RankingScene.h">
-      <Filter>Model\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="Ovni.h">
       <Filter>Model\Entities\Ovni</Filter>
     </ClInclude>
     <ClInclude Include="OvniManager.h">
       <Filter>Model\Entities\Ovni</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Model\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Model\Scenes\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScene.h">
+      <Filter>Model\Scenes\MenuScene</Filter>
+    </ClInclude>
+    <ClInclude Include="RankingScene.h">
+      <Filter>Model\Scenes\RankingScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities.h">
+      <Filter>Model\Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

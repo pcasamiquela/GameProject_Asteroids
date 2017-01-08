@@ -69,6 +69,7 @@ void AsteroidsManager::CollisionController(Asteroid& currentAsteroid)
 			distanceFromAsteroid.x = currentBullet->GetPosition().x - currentAsteroid.GetPosition().x;
 			distanceFromAsteroid.y = currentBullet->GetPosition().y - currentAsteroid.GetPosition().y;
 			distance = distanceFromAsteroid.Length();
+			//cout << currentBullet->GetPosition(); << endl;
 			if (distance <= ASTEROID_RADIUS) {
 				//Bullet Impact
 				currentBullet->Reset();

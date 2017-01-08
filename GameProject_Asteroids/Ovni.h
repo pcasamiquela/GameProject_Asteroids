@@ -2,8 +2,9 @@
 #include "System.h"
 #include "Sprite.h"
 #include "Bullets.h"
+#include "Entities.h"
 
-class Ovni
+class Ovni : public Entities
 {
 public:
 	Ovni();
@@ -11,19 +12,16 @@ public:
 
 	void Setup();
 	void Update(float deltaTime);
-	void Draw();
+	virtual void Draw();
 	float speed;
 	Bullets bullet;
-	Vector2D GetPosition();
 	Vector2D playerPosition;
 	void Shoot();
 	int id;
+
 private:
-	Vector2D position;
 	Vector2D randomDirection;
-	Sprite ovniSprite;
 	float bulletAngle;
-	void DoWrap();
 	void UpdatePosition(float deltaTime);
 	void RandomizeDirection();
 };

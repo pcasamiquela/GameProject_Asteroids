@@ -118,6 +118,7 @@
     <ClCompile Include="AsteroidsManager.cpp" />
     <ClCompile Include="Bullets.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Entities.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuScene.cpp" />
@@ -134,6 +135,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="Entities.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GUI.h" />

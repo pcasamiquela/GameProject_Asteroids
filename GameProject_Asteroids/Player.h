@@ -1,19 +1,22 @@
 #pragma once
-#include "Sprite.h"
 #include "System.h"
 #include <math.h>
 #include "Constants.h"
 #include "Bullets.h"
 #include "RankingScene.h"
+#include "Entities.h"
 
 #define MAX_SPEED 0.005f
 #define RADIUS 25.0f
-class Player
+class Player : public Entities
 {
 
 public:
-	Player(Vector2D _position, int _width, int _height, int _lifes) : position(_position), width(_width), height(_height) {
-		playerSprite = { { int(position.x), int(position.y), width, height }, 0, ObjectID::PLAYER };
+	Player(Vector2D _position, int _width, int _height, int _lifes){
+		position = _position;
+		width = _width;
+		height = _height;
+		entitieSprite = { { int(position.x), int(position.y), width, height }, 0, ObjectID::PLAYER };
 		speedCounter = 0;
 		bulletPool = new Bullets[MAX_BULLETS];
 		bulletCounter = 0;
@@ -25,10 +28,9 @@ public:
 	};
 	~Player();
 	void Update(float deltaTime);
-	void Draw();
+	virtual void Draw();
 	void Reset();
 	Bullets& GetCurrentBullet(int i);
-	Vector2D GetPosition();
 	int lifes;
 	int score;
 	bool inmortal;
@@ -39,8 +41,6 @@ public:
 	ControlState controlState;
 
 private:
-	int width, height;
-	Vector2D position;
 	Vector2D desiredVelocity;
 	Vector2D previousVelocity;
 	float speedCounter;
@@ -49,18 +49,15 @@ private:
 	float inmortalTime;
 	float blinkTime; //parpadeo
 	std::string name;
-	Sprite playerSprite;
 	Bullets* bulletPool;
 
 	MouseCoords mouseCoords;
 
 	void UpdateSpeed(float deltaTime);
 	void UpdateAngle();
-	void DoWrap(Vector2D &position);
 	void UpdatePosition();
 	void FireWeapon(int bullet);
 	int bulletCounter;
 	void WriteRanking();
-
 };
 

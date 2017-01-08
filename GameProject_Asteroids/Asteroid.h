@@ -1,22 +1,18 @@
 #pragma once
-#include "Sprite.h"
 #include "System.h"
 #include <math.h>
 #include "Constants.h"
+#include "Entities.h"
 
-class Asteroid
-{
+class Asteroid : public Entities{
 public:
 	Asteroid();
 	~Asteroid();
 
 	void Update(float deltaTime);
-	void Draw();
 	void Setup();
 	void ChangeSprite(ObjectID objectID, int newWidth, int newHight);
-	Vector2D GetPosition();
 	std::string asteroidState;
-	int width, height;
 	double speed;
 	void RandomizeDirection();
 	void InverseDirection();
@@ -24,10 +20,7 @@ public:
 	Vector2D playerPosition;
 
 private:
-	Vector2D position;
 	Vector2D randomDirection;
-	Sprite asteroidSprite;
-	void DoWrap(Vector2D &position);
 	void UpdatePosition(float deltaTime);
 };
 

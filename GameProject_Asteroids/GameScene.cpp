@@ -47,8 +47,8 @@ void GameScene::Update(void) {
 		{
 		case PLAY:
 			if (IM.IsKeyDown<KEY_BUTTON_ESCAPE>())inGameMenu = true;
+			//ovniManager->Update(asteroidsManager->GetLevel());
 			asteroidsManager->Update();
-			ovniManager->Update(asteroidsManager->GetLevel());
 			player->Update(TM.GetDeltaTime() / 100000);
 			break;
 

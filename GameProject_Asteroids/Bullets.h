@@ -1,35 +1,29 @@
 #pragma once
 #include "System.h"
 #include "Sprite.h"
+#include "Entities.h"
 #define MAX_SPEED 0.0075f
-class Bullets
+
+class Bullets : public Entities
 {
 public:
 	Bullets() {
+		width = 0;
+		height = 0;
 		position = 0;
-		bulletSprite = { { 0, 0, 8, 8 }, 0, ObjectID::BULLET };
+		entitieSprite = { { 0, 0, 8, 8 }, 0, ObjectID::BULLET };
 		isActive = false;
 		speedCounter = 0;
 		lifeTime = 0;
 		firstShoot = false;
 	}
-	Bullets(int x, int y, int width, int height){
-		bulletSprite = { { x, y, width, height }, 0, ObjectID::BULLET };
-		position.x = x;
-		position.y = y;
-		isActive = true;
-		speedCounter = 0;
-		lifeTime = 0;
-	}
-
 	~Bullets();
 	void Update(float deltaTIme, float angle);
-	void Draw();
+	virtual void Draw();
 	void SetActive(bool _isActive);
 	void setPosition(Vector2D _position);
 	void Reset();
 
-	Vector2D GetPosition();
 	float lifeTime;
 	bool firstShoot;
 	bool isActive;
@@ -37,15 +31,11 @@ public:
 
 private:
 	Vector2D direction;
-	Vector2D position;
 	Vector2D velocityDirection;
-	Sprite bulletSprite;
 	float speedCounter;
 
 	//reference to collisions!
 
 	void UpdatePosition(float angle);
-	void CheckCollisions();
-	void DoWrap(Vector2D& position);
 };
 
