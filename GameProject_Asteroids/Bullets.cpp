@@ -11,7 +11,7 @@ void Bullets::Update(float deltaTime, float angle)
 		lifeTime += deltaTime;
 		if (position.x < 0 || position.x > SCREEN_WIDTH ||
 			position.y < 0 || position.y >SCREEN_HEIGHT) Reset();
-		if (lifeTime >= 0.02f) Reset();
+		//if (lifeTime >= 0.02f) Reset();
 	}
 }
 
