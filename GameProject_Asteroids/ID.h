@@ -1,8 +1,8 @@
-#pragma once
 #include <iostream>
+#pragma once
 
 // Enum ID used to identify each Game Object in the Game
-enum class ObjectID : const int {
+enum class ObjectID : int {
 	BUTTON, 
 	BULLET,
 	PLAYER, //ENTITIES 
